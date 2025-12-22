@@ -6,7 +6,8 @@ const StockManager = {
     async fetchStock() {
         try {
             // 1. Fetch from Google Cloud (The Brain)
-            const response = await fetch(CONFIG.stockApiURL);
+            // Add timestamp (+ '?t=' + Date.now()) to prevent aggressive caching by Google/Browser
+            const response = await fetch(CONFIG.stockApiURL + '?t=' + Date.now());
             if (response.ok) {
                 const data = await response.json();
 
