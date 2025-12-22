@@ -7,30 +7,31 @@ const StockManager = {
 
     // Fetch current stock
     async fetchStock() {
-        // 1. Try Server (Live Data)
-        try {
-            const response = await fetch(this.API_GET + '?t=' + Date.now()); // Prevent caching
-            if (response.ok) {
-                const data = await response.json();
-                // Cache to local storage
-                localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
-                return data;
-            }
-        } catch (error) {
-            console.warn("Server stock fetch failed, falling back to local storage.", error);
-        }
-
-        // 2. Fallback: Browser Memory
+        // 1. Priority: Check Browser Memory (User's Local Changes)
         const stored = localStorage.getItem(this.STORAGE_KEY);
         if (stored) {
             try {
+                // If we have local data, use it! (Don't overwrite with static server file)
                 return JSON.parse(stored);
             } catch (e) {
                 console.error("Stock Parse Error", e);
             }
         }
 
-        // 3. Fallback: Defaults (from data.js)
+        // 2. Fallback: Fetch Static Initial Data from Server
+        try {
+            const response = await fetch(this.API_GET + '?t=' + Date.now()); // Prevent caching
+            if (response.ok) {
+                const data = await response.json();
+                // Seed the local storage for next time
+                localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
+                return data;
+            }
+        } catch (error) {
+            console.warn("Server stock fetch failed.", error);
+        }
+
+        // 3. Last Resort: Defaults (from data.js)
         if (typeof PRODUCTS !== 'undefined') {
             const defaults = {};
             PRODUCTS.forEach(p => defaults[p.id] = p.stock);
