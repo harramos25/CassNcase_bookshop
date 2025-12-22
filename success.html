@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Successfully Placed | CassNcase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Nunito:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css?v=6">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+
+<body>
+
+    <div class="success-wrapper">
+        <!-- 1. The Icon: Storyteller Book with Sparkles -->
+        <div class="magic-icon-container">
+            <i class="fas fa-book-open magic-icon"></i>
+            <div class="magic-sparkles"><i class="fas fa-star"></i></div>
+        </div>
+
+        <!-- 2. The Headline -->
+        <h1 class="success-title">Order Successfully Placed</h1>
+
+        <!-- 3. The Glass Container -->
+        <div class="success-card">
+            <p class="success-msg-main" style="text-transform: uppercase; letter-spacing: 1px;">
+                WAIT FOR YOUR CONFIRMATION EMAIL WITHIN 24 HOURS.
+            </p>
+            <p class="success-msg-sub">
+                Thank you so much for your support <br>
+                Your book will arrive soon.
+            </p>
+            <span class="signature">Mahal ka ni Thera.</span>
+        </div>
+
+        <!-- 5. Back to Home Button -->
+        <a href="index.html" class="btn-ghost-gold">
+            Return to Library
+        </a>
+    </div>
+
+    <script>
+        // 4. Confetti Explosion
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                var duration = 3 * 1000;
+                var animationEnd = Date.now() + duration;
+                var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 5 }; // Low Z-Index
+
+                function randomInRange(min, max) {
+                    return Math.random() * (max - min) + min;
+                }
+
+                var interval = setInterval(function () {
+                    var timeLeft = animationEnd - Date.now();
+
+                    if (timeLeft <= 0) {
+                        return clearInterval(interval);
+                    }
+
+                    var particleCount = 50 * (timeLeft / duration);
+
+                    // Purple and Gold Confetti Only
+                    confetti(Object.assign({}, defaults, {
+                        particleCount,
+                        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+                        colors: ['#8a2be2', '#ffd700', '#B5A8D1']
+                    }));
+                    confetti(Object.assign({}, defaults, {
+                        particleCount,
+                        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+                        colors: ['#8a2be2', '#ffd700', '#B5A8D1']
+                    }));
+                }, 250);
+            }, 1000); // Trigger after 1s (after card slide up)
+        });
+    </script>
+</body>
+
+</html>

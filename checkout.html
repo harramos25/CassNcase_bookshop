@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | CassNcase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css?v=6">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header id="main-header">
+        <div class="container nav-container">
+            <!-- Logo -->
+            <a href="index.html" class="logo">CassNcase <span>🌙</span></a>
+
+            <!-- Desktop Nav -->
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop Books</a></li>
+                </ul>
+            </nav>
+
+            <!-- Utility + Mobile Toggle -->
+            <div class="nav-actions">
+                <!-- Search Removed -->
+                <div class="mobile-toggle" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+
+
+    </header>
+
+    <div class="container checkout-container">
+        <h1 class="section-title">Finalize Your Order</h1>
+
+        <div class="checkout-grid">
+            <!-- LEFT: FORMS -->
+            <div class="checkout-main">
+                <form id="checkout-form" method="POST">
+                    <!-- STEP 1: CUSTOMER INFO -->
+                    <div class="checkout-section">
+                        <h3 class="section-subtitle">1. Shipping Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group floating">
+                                <input type="text" name="entry.fullname" id="inp-fullname" required
+                                    placeholder="Skylar Millie Parker">
+                                <label for="inp-fullname">Full Name</label>
+                            </div>
+                            <div class="form-group floating">
+                                <input type="email" name="entry.email" id="inp-email" required
+                                    placeholder="youremail@example.com">
+                                <label for="inp-email">Email Address</label>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group floating">
+                                <input type="tel" name="entry.contact" id="inp-contact" required
+                                    placeholder="09XXXXXXXXX">
+                                <label for="inp-contact">Contact Number</label>
+                            </div>
+                            <div class="form-group floating">
+                                <select name="entry.shippingRegion" id="region" required>
+                                    <option value="" disabled selected>Select Region</option>
+                                    <option value="luzon">Luzon (+₱50)</option>
+                                    <option value="visayas">Visayas (+₱70)</option>
+                                    <option value="mindanao">Mindanao (+₱90)</option>
+                                </select>
+                                <label for="region">Shipping Region</label>
+                            </div>
+
+                        </div>
+                        <div class="form-group floating" style="margin-top: 10px;">
+                            <textarea name="entry.address" id="inp-address" rows="2" required
+                                placeholder="House No., Street, Barangay, City, Province, Zip Code"></textarea>
+                            <label for="inp-address">Complete Home Address</label>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: PAYMENT METHOD -->
+                    <div class="checkout-section">
+                        <h3 class="section-subtitle">2. Select Payment Method</h3>
+                        <div class="payment-cards">
+                            <div class="payment-card" onclick="selectPayment('Maya')" id="card-Maya">
+                                <div class="card-icon"><i class="fas fa-wallet"></i></div>
+                                <span>Maya</span>
+                            </div>
+                            <div class="payment-card" onclick="selectPayment('RCBC')" id="card-RCBC">
+                                <div class="card-icon"><i class="fas fa-qrcode"></i></div>
+                                <span>RCBC/DiskarTech</span>
+                            </div>
+                            <div class="payment-card" onclick="selectPayment('Bank')" id="card-Bank">
+                                <div class="card-icon"><i class="fas fa-university"></i></div>
+                                <span>Manual Transfer</span>
+                            </div>
+                        </div>
+
+                        <!-- Hidden Radios for Form Submission -->
+                        <div style="display:none;">
+                            <input type="radio" name="entry.paymentMethod" id="pay-maya" value="Maya" required>
+                            <input type="radio" name="entry.paymentMethod" id="pay-rcbc" value="RCBC">
+                            <input type="radio" name="entry.paymentMethod" id="pay-bank" value="Bank Transfer">
+                        </div>
+
+                        <!-- QR / DETAILS DISPLAY (Revealed on select) -->
+                        <div id="payment-reveal" class="qr-reveal-box">
+                            <div id="qr-maya" class="qr-item hidden">
+                                <p>Scan this QR using Maya</p>
+                                <img src="assets/images/qr2.png" alt="Maya QR">
+
+                            </div>
+                            <div id="qr-rcbc" class="qr-item hidden">
+                                <p>Scan for RCBC or use Bank QR</p>
+                                <img src="assets/images/qr1.png" alt="RCBC QR">
+
+                            </div>
+                            <div id="transfer-details" class="qr-item hidden">
+                                <div class="copy-card">
+                                    <div class="copy-card-header">BANK TRANSFER DETAILS</div>
+                                    <div class="copy-row">
+                                        <span>Bank:</span>
+                                        <strong>Maya Wallet / Maya Philippines Inc.</strong>
+                                    </div>
+                                    <div class="copy-row">
+                                        <span>Account Name:</span>
+                                        <strong>Raven Justine Gutierrez</strong>
+                                    </div>
+                                    <div class="copy-row">
+                                        <span>Account No:</span>
+                                        <div class="copy-input-group">
+                                            <strong id="acc-number">09215635411</strong>
+                                            <button type="button" class="copy-btn"
+                                                onclick="copyToClipboard('09215635411')">COPY</button>
+                                        </div>
+                                    </div>
+                                    <p style="font-size: 0.75rem; margin-top: 15px; opacity: 0.8;">Please save a
+                                        screenshot of your transfer as proof.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3: REFERENCE -->
+                    <div class="checkout-section">
+                        <h3 class="section-subtitle">3. Payment Confirmation</h3>
+                        <div class="form-group floating">
+                            <input type="text" name="entry.refNumber" id="inp-ref" required
+                                placeholder="Enter reference number...">
+                            <label for="inp-ref">Reference Number</label>
+                            <div class="ref-guide-trigger" onclick="toggleRefGuide()">
+                                <i class="fas fa-question-circle"></i> Where do I find this?
+                            </div>
+                        </div>
+
+                        <div id="ref-guide" class="ref-guide-box hidden">
+                            <img src="assets/images/sample_ref.png" alt="Reference Guide">
+                            <p>Check your payment confirmation for this number.</p>
+                        </div>
+                    </div>
+
+                    <!-- HIDDEN FIELDS -->
+                    <input type="hidden" name="entry.orderType" value="" id="hidden-type">
+                    <input type="hidden" name="entry.orderQty" value="" id="hidden-qty">
+
+
+                </form>
+            </div>
+
+            <!-- RIGHT: SUMMARY (STICKY) -->
+            <div class="checkout-sidebar">
+                <div class="receipt-card">
+                    <h3 class="receipt-header">Order Summary</h3>
+
+                    <div class="receipt-product">
+                        <img id="summary-thumb" src="" alt="" class="receipt-thumb"
+                            onerror="this.src='https://via.placeholder.com/60x80/EFE5D5/3D3126?text=Book'">
+                        <div class="receipt-info">
+                            <div id="product-name" class="receipt-name">Loading...</div>
+                            <div id="product-qty" class="receipt-qty">Qty: 0</div>
+                        </div>
+                        <div id="product-price" class="receipt-price">₱0</div>
+                    </div>
+
+                    <div class="receipt-divider"></div>
+
+                    <div class="receipt-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal-amount">₱0</span>
+                    </div>
+                    <div class="receipt-row">
+                        <span>Shipping Fee</span>
+                        <span id="shipping-fee" style="color:var(--sage-soft); font-weight:700;">FREE</span>
+                    </div>
+
+                    <div class="receipt-divider total"></div>
+
+                    <div class="receipt-row total">
+                        <span>Total To Pay</span>
+                        <span id="total-amount" class="gold-total">₱0</span>
+                    </div>
+
+
+
+                    <div class="receipt-footer">
+                        <i class="fas fa-shield-alt"></i> Secure Checkout
+                    </div>
+                </div>
+                <button type="submit" id="submit-btn" form="checkout-form" class="btn btn-primary"
+                    style="width:100%; margin-top:20px;">
+                    Place Order 🌙
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Iframe to catch Google Form redirect if not using fetch -->
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+    <!-- CONFIRMATION MODAL -->
+    <div id="confirm-modal" class="modal-overlay">
+        <div class="modal-box">
+            <h3 class="modal-title">Checking Order... 🧐</h3>
+            <p class="modal-msg">Are you sure everything is correct? 🥺</p>
+            <div class="modal-actions">
+                <button class="btn btn-outline" onclick="closeConfirmModal()">Wait, let me check</button>
+                <button class="btn btn-primary" onclick="confirmSubmit()">Yes, Order Now!</button>
+            </div>
+        </div>
+    </div>
+
+    <footer style="margin-top:80px;">
+        <div class="container text-center" style="padding: 40px; color: var(--sage-soft); font-size: 0.8rem;">
+            <p>&copy; 2025 CassNcase.</p>
+        </div>
+    </footer>
+
+    <!-- Search Removed -->
+
+    <!-- SCRIPTS -->
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/stock-manager.js"></script>
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-menu">
+        <div class="star" style="left:10%; animation-duration:3s;"></div>
+        <div class="star" style="left:30%; animation-duration:5s;"></div>
+        <div class="star" style="left:70%; animation-duration:4s;"></div>
+        <div class="star" style="left:90%; animation-duration:6s;"></div>
+
+        <nav class="mobile-nav-links">
+            <a href="index.html" onclick="toggleMobileMenu()">Home</a>
+            <a href="shop.html" onclick="toggleMobileMenu()">Shop Books</a>
+            <a href="#" onclick="toggleMobileMenu()">FAQs</a>
+        </nav>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/checkout.js"></script>
+
+    <script>
+        // Update input names based on CONFIG immediately
+        // This simulates a "Hydration" of the form with correct Google Form IDs
+        (function hydrateFormIds() {
+            if (!CONFIG || !CONFIG.entryIDs) return;
+
+            // Map IDs in UI to keys in CONFIG
+            const map = {
+                'inp-fullname': 'fullname',
+                'inp-email': 'email',
+                'inp-contact': 'contact',
+                'inp-address': 'address',
+                'region': 'shippingRegion',
+                'inp-ref': 'refNumber',
+                'pay-maya': 'paymentMethod', // Using IDs to map to the same entry ID for radios is tricky in this loop
+                'pay-rcbc': 'paymentMethod',
+                'pay-bank': 'paymentMethod',
+                'hidden-type': 'orderType',
+                'hidden-qty': 'orderQty'
+            };
+
+            for (const [uiId, configKey] of Object.entries(map)) {
+                const el = document.getElementById(uiId);
+                if (el && CONFIG.entryIDs[configKey]) {
+                    el.name = CONFIG.entryIDs[configKey];
+                }
+            }
+        })();
+    </script>
+</body>
+
+</html>

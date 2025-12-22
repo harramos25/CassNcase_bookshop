@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | CassNcase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Nunito:wght@300;400;600;700&family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css?v=6">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header id="main-header">
+        <div class="container nav-container">
+            <!-- Logo -->
+            <a href="index.html" class="logo">CassNcase <span>🌙</span></a>
+
+            <!-- Desktop Nav -->
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html" class="active">Shop Books</a></li>
+                </ul>
+            </nav>
+
+            <!-- Utility + Mobile Toggle -->
+            <div class="nav-actions">
+                <!-- Search Removed -->
+                <div class="mobile-toggle" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+
+
+    </header>
+
+    <div style="padding-top: 100px;"></div>
+
+    <div class="container product-detail-container">
+        <!-- LEFT: IMAGES CAROUSEL -->
+        <div class="product-gallery">
+            <div class="gallery-main" style="position: relative; overflow: visible; margin-bottom: 20px;">
+                <button class="carousel-btn prev" onclick="prevImage()">❮</button>
+                <img id="main-image" src="" alt="Book Cover"
+                    onerror="this.src='https://via.placeholder.com/600x800/2A2438/7A6C9D?text=Loading+Image...'"
+                    style="display: block; width: 100%; height: auto;">
+                <button class="carousel-btn next" onclick="nextImage()">❯</button>
+            </div>
+            <!-- Dots Navigation -->
+            <div class="carousel-dots" id="carousel-dots">
+                <!-- Javascript will populate dots -->
+            </div>
+        </div>
+
+        <!-- RIGHT: DETAILS -->
+        <div class="product-info">
+            <h1 id="product-title">Loading...</h1>
+            <p class="author-tag" style="color:var(--lilac-light); margin-bottom:20px;">by CassNcase</p>
+
+            <div class="format-selector">
+                <p style="margin-bottom:15px; font-size:0.9rem; color:var(--lilac-light);">SELECT FORMAT:</p>
+
+                <div class="format-options-container">
+                    <a href="product.html?id=moonlight-lilac-pb" class="format-option card-style" id="opt-pb">
+                        <div class="format-icon"><i class="fas fa-book"></i></div>
+                        <div class="format-details">
+                            <strong>Paperback Set</strong>
+                            <div class="format-subtitle">Volume 1 & 2</div>
+                        </div>
+                        <div class="format-price">₱1,500</div>
+                    </a>
+
+                    <a href="product.html?id=moonlight-lilac-hb" class="format-option card-style" id="opt-hb">
+                        <div class="format-icon"><i class="fas fa-book-open"></i></div>
+                        <div class="format-details">
+                            <strong>Hardbound Set</strong>
+                            <div class="format-subtitle">Volume 1 & 2</div>
+                        </div>
+                        <div class="format-price">₱2,800</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- QUANTITY SELECTOR -->
+            <div style="margin: 20px 0; display:flex; align-items:center; gap:15px;">
+                <span style="font-size:0.9rem; color:var(--lilac-light);">Quantity:</span>
+                <div
+                    style="display:flex; align-items:center; background:rgba(255,255,255,0.05); border-radius:5px; border:1px solid rgba(255,255,255,0.1);">
+                    <button onclick="updateQty(-1)"
+                        style="padding:5px 15px; background:none; border:none; color:white; cursor:pointer; font-size:1.2rem;">−</button>
+                    <input type="number" id="qty-input" value="1" min="1" max="10"
+                        style="width:50px; text-align:center; border:none; background:none; color:white; padding:5px; -moz-appearance: textfield; appearance: textfield;">
+                    <button onclick="updateQty(1)"
+                        style="padding:5px 15px; background:none; border:none; color:white; cursor:pointer; font-size:1.2rem;">+</button>
+                </div>
+            </div>
+
+            <!-- STOCK DISPLAY -->
+            <div id="stock-container" class="stock-display" style="margin-bottom:20px; font-weight:600;">
+                <!-- JS populated -->
+            </div>
+
+            <!-- CTA -->
+            <button id="buy-btn" class="btn btn-primary"
+                style="width:100%; margin-bottom: 20px; padding: 15px; font-size:1.1rem;">
+                🛒 Pre-Order Now
+            </button>
+
+            <!-- ACCORDION / DETAILS -->
+            <div class="order-summary"
+                style="background: rgba(255,255,255,0.03); margin-top:20px; padding:20px; border-radius:10px;">
+                <h3
+                    style="margin-bottom:15px; font-size:1.1rem; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+                    Book Specifications</h3>
+                <ul id="specs-list"
+                    style="margin-bottom:20px; font-size:0.9rem; color:var(--cream-text); padding-left:20px; list-style:disc; line-height:1.6;">
+                    <!-- JS populated -->
+                </ul>
+
+                <h3
+                    style="margin-bottom:15px; font-size:1.1rem; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+                    Included Freebies 🎁</h3>
+                <ul id="freebies-list"
+                    style="margin-bottom:20px; font-size:0.9rem; color:var(--cream-text); padding-left:20px; list-style:disc; line-height:1.6;">
+                    <!-- JS populated -->
+                </ul>
+
+                <div id="terms-section" class="warning-box scroll-style">
+                    <h4 class="warning-title"><i class="fas fa-exclamation-triangle"></i> PLEASE READ BEFORE PURCHASING
+                    </h4>
+                    <p class="warning-text">
+                        Yes, this is important. Please don’t skip. I will cry.
+                    </p>
+                    <ul class="warning-list">
+                        <li>This is a Batch 1 pre-order</li>
+                        <li>Pre-order: Dec 19, 2025 – Jan 25, 2026</li>
+                        <li>Delivery: Feb 25, 2026 – Mar 15, 2026</li>
+                        <li>(Because quality takes time, promise.)</li>
+                    </ul>
+
+                    <div class="terms-agreement">
+                        <input type="checkbox" id="terms-check">
+                        <label for="terms-check">I agree with all terms (and yes, I read them)</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CUSTOM ALERT MODAL -->
+    <div id="custom-modal" class="modal-overlay">
+        <div class="modal-box">
+            <h3 class="modal-title">Wait! One thing... 🥺</h3>
+            <p class="modal-msg">Please agree to the terms (read them first!). It helps us avoid misunderstandings!</p>
+            <button class="btn btn-primary" onclick="closeModalAndScroll()">Okay, I'll read it</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-separator"></div>
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Column 1: Identity -->
+                <div class="footer-col">
+                    <a href="index.html" class="logo" style="font-size: 1.8rem; margin-bottom: 15px;">CassNcase
+                        <span>🌙</span></a>
+                    <p style="font-style: italic; font-family: var(--font-heading);">"Stories written with love, chaos,
+                        and a little heartbreak."</p>
+                </div>
+                <!-- Column 2: Quick Links -->
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop Books</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+                <!-- Column 3: Connect -->
+                <div class="footer-col">
+                    <h4>Stay Magical</h4>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/share/1BVU6mqmNi/" class="social-icon" target="_blank"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/cassncase02?igsh=MXdmNG1jajBqYjhmaQ==" class="social-icon"
+                            target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@15phoebepsyd?_r=1&_t=ZS-92QXstHuQwk" class="social-icon"
+                            target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.wattpad.com/user/CassNcase" class="social-icon" title="Wattpad"
+                            target="_blank">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path
+                                    d="M20.6,6L17.8,19.3c-0.1,0.5-0.6,0.9-1.1,0.9h-2.1c-0.5,0-0.9-0.3-1.1-0.7L12,13.2l-1.6,6.3c-0.1,0.4-0.5,0.7-1,0.7H7.3c-0.5,0-1-0.4-1.1-0.9L3.4,6h2.4l1.8,9.7l2.2-9.7h2.3l2.2,9.7l1.8-9.7H20.6z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-bar">
+                <p>&copy; 2025 CassNcase. All rights reserved.</p>
+                <p style="margin-top:5px; font-style:italic; opacity:0.6;">Mahal ka ni Thera.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Search Removed -->
+
+    <!-- SCRIPTS -->
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/stock-manager.js"></script>
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-menu">
+        <!-- Falling Stars Elements -->
+        <div class="star" style="left:10%; animation-duration:3s;"></div>
+        <div class="star" style="left:30%; animation-duration:5s;"></div>
+        <div class="star" style="left:70%; animation-duration:4s;"></div>
+        <div class="star" style="left:90%; animation-duration:6s;"></div>
+
+        <nav class="mobile-nav-links">
+            <a href="index.html" onclick="toggleMobileMenu()">Home</a>
+            <a href="shop.html" onclick="toggleMobileMenu()">Shop Books</a>
+            <a href="#" onclick="toggleMobileMenu()">FAQs</a>
+        </nav>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        // PAGE LOGIC
+        const params = new URLSearchParams(window.location.search);
+        let currentId = params.get('id') || 'moonlight-lilac-pb';
+
+        // State
+        let currentProduct = null;
+        let currentImgIndex = 0;
+
+        // Safety check
+        // getProduct is in data.js, but since data.js defines PRODUCTS array, we need a helper or just find it.
+        // Assuming PRODUCTS global is available.
+
+        function getProduct(id) {
+            if (typeof PRODUCTS !== 'undefined') {
+                return PRODUCTS.find(p => p.id === id);
+            }
+            return null;
+        }
+
+        if (!getProduct(currentId)) currentId = 'moonlight-lilac-pb';
+
+        function renderProduct(id) {
+            currentId = id;
+            currentProduct = getProduct(id);
+            if (!currentProduct) return;
+
+            // Updated Title
+            document.getElementById('product-title').innerText = currentProduct.title;
+
+            // Stock logic
+            const stockContainer = document.getElementById('stock-container');
+            const btn = document.getElementById('buy-btn');
+
+            if (currentProduct.stock <= 0) {
+                stockContainer.style.display = 'block';
+                stockContainer.innerHTML = "❌ Unavailable";
+                stockContainer.style.color = "var(--warning-red)";
+
+                btn.disabled = true;
+                btn.innerText = "Unavailable";
+                btn.style.opacity = "0.5";
+                btn.style.cursor = "not-allowed";
+            } else {
+                stockContainer.style.display = 'block';
+                stockContainer.innerHTML = `<span style="color:#4CAF50">Availability: Open</span>`;
+
+                btn.disabled = false;
+                btn.onclick = () => addToCart(id);
+                // Digital Button Text logic
+                const btnLabel = currentProduct.isDigital ? "Buy Now" : "Pre-Order Now";
+                btn.innerText = `🛒 ${btnLabel} - ₱${currentProduct.price.toLocaleString()}`;
+                btn.style.opacity = "1";
+                btn.style.cursor = "pointer";
+            }
+
+            // Specs
+            if (currentProduct.isDigital) {
+                document.getElementById('specs-list').innerHTML = `
+                    <li>Her Stories Behind The Curtains (PDF copy of Cythera's Point Of View)</li>
+                `;
+            } else {
+                document.getElementById('specs-list').innerHTML = `
+                    <li>Size: ${currentProduct.description.size}</li>
+                    <li>Cover: ${currentProduct.description.cover}</li>
+                    <li>Inside: ${currentProduct.description.pages}</li>
+                `;
+            }
+
+            // CONDITIONAL SECTIONS (Freebies & Warning)
+            const freebiesSection = document.getElementById('freebies-list').previousElementSibling; // The H3
+            const freebiesList = document.getElementById('freebies-list');
+            const termsSection = document.getElementById('terms-section');
+            const formatSelector = document.querySelector('.format-selector');
+
+            if (currentProduct.isDigital) {
+                // HIDE for Digital
+                freebiesSection.style.display = 'none';
+                freebiesList.style.display = 'none';
+                termsSection.style.display = 'none';
+                if (formatSelector) formatSelector.style.display = 'none';
+            } else {
+                // SHOW for Physical
+                freebiesSection.style.display = 'block';
+                freebiesList.style.display = 'block';
+                termsSection.style.display = 'block';
+                if (formatSelector) formatSelector.style.display = 'block';
+
+                // Populate Freebies only if visible
+                freebiesList.innerHTML = currentProduct.description.freebies.map(f => `<li>${f}</li>`).join('');
+            }
+
+            // Highlight selection
+            document.querySelectorAll('.format-option').forEach(el => el.classList.remove('active'));
+            if (id.includes('pb')) document.getElementById('opt-pb').classList.add('active');
+            else document.getElementById('opt-hb').classList.add('active');
+
+            // --- CAROUSEL SETUP ---
+            currentImgIndex = 0; // Reset to start
+            setupCarouselDots();
+            updateCarouselImage();
+        }
+
+        function setupCarouselDots() {
+            const dotsContainer = document.getElementById('carousel-dots');
+            dotsContainer.innerHTML = ''; // Clear existing
+
+            if (currentProduct.images.length > 1) {
+                currentProduct.images.forEach((_, index) => {
+                    const dot = document.createElement('div');
+                    dot.className = 'dot';
+                    dot.onclick = () => goToImage(index);
+                    dotsContainer.appendChild(dot);
+                });
+            }
+        }
+
+        function updateCarouselImage() {
+            if (!currentProduct) return;
+
+            const img = document.getElementById('main-image');
+            img.style.opacity = '0'; // Fade out effect
+
+            setTimeout(() => {
+                img.src = `assets/images/${currentProduct.images[currentImgIndex]}`;
+                img.style.opacity = '1';
+            }, 200);
+
+            // Update dots
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, idx) => {
+                if (idx === currentImgIndex) dot.classList.add('active');
+                else dot.classList.remove('active');
+            });
+
+            // Hide/Show arrows if only 1 image
+            const btns = document.querySelectorAll('.carousel-btn');
+            if (currentProduct.images.length <= 1) {
+                btns.forEach(b => b.style.display = 'none');
+            } else {
+                btns.forEach(b => b.style.display = 'flex');
+            }
+        }
+
+        function nextImage() {
+            if (!currentProduct) return;
+            currentImgIndex++;
+            if (currentImgIndex >= currentProduct.images.length) {
+                currentImgIndex = 0;
+            }
+            updateCarouselImage();
+        }
+
+        function prevImage() {
+            if (!currentProduct) return;
+            currentImgIndex--;
+            if (currentImgIndex < 0) {
+                currentImgIndex = currentProduct.images.length - 1;
+            }
+            updateCarouselImage();
+        }
+
+        function goToImage(index) {
+            currentImgIndex = index;
+            updateCarouselImage();
+        }
+
+
+        function updateQty(change) {
+            const input = document.getElementById('qty-input');
+            let val = parseInt(input.value) + change;
+            if (val < 1) val = 1;
+            if (val > 10) val = 10;
+            input.value = val;
+        }
+
+        // --- CUSTOM MODAL LOGIC ---
+        function addToCart(id) {
+            // Skip terms check for Digital Items
+            if (!currentProduct.isDigital) {
+                const terms = document.getElementById('terms-check');
+                if (!terms.checked) {
+                    // Show Custom Modal instead of alert
+                    document.getElementById('custom-modal').classList.add('active');
+                    return;
+                }
+            }
+            const qty = document.getElementById('qty-input').value;
+            window.location.href = `checkout.html?product=${id}&qty=${qty}`;
+        }
+
+        function closeModalAndScroll() {
+            document.getElementById('custom-modal').classList.remove('active');
+
+            // Wait slightly for modal to close, then scroll
+            setTimeout(() => {
+                const termsSection = document.getElementById('terms-section');
+                termsSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                // Optional: Highlight the red box briefly
+                termsSection.style.transition = "box-shadow 0.3s ease";
+                termsSection.style.boxShadow = "0 0 20px var(--warning-red)";
+                setTimeout(() => {
+                    termsSection.style.boxShadow = "none";
+                }, 1000);
+            }, 300);
+        }
+
+        // Listen for Global Stock Updates (from main.js)
+        document.addEventListener('stock-updated', () => {
+            renderProduct(currentId);
+        });
+
+        // Ensure options are clickable
+        // Just in case style.css overrides these
+        const style = document.createElement('style');
+        style.innerHTML = `
+            .format-option { cursor: pointer !important; pointer-events: auto !important; position: relative; }
+            .format-option * { pointer-events: none; } /* Let the div handle the click */
+        `;
+        document.head.appendChild(style);
+
+        // Init
+        try {
+            renderProduct(currentId);
+        } catch (e) { console.error(e); }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | CassNcase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=6">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header id="main-header">
+        <div class="container nav-container">
+            <!-- Logo -->
+            <a href="index.html" class="logo">CassNcase <span>🌙</span></a>
+
+            <!-- Desktop Nav -->
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html" class="active">Shop Books</a></li>
+                </ul>
+            </nav>
+
+            <!-- Utility + Mobile Toggle -->
+            <div class="nav-actions">
+                <!-- Search Removed -->
+                <div class="mobile-toggle" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+
+
+    </header>
+
+    <div style="padding-top: 100px;"></div>
+
+    <section class="container">
+        <h1 class="section-title">Shop Books</h1>
+
+        <div class="product-grid" id="product-list">
+            <!-- Products will be rendered here by JS, but also hardcoding structure for static stability -->
+
+            <!-- PAPERBACK -->
+            <div class="product-card">
+                <div class="card-image">
+                    <img src="assets/images/paperback.png" alt="Paperback Set"
+                        onerror="this.src='https://via.placeholder.com/400x600/2A2438/7A6C9D?text=Paperback+Set'">
+                </div>
+                <div class="card-info">
+                    <div class="card-meta">
+                        <span
+                            style="color:var(--cream-text); background:var(--lilac-deep); padding: 2px 8px; border-radius:4px; font-size:0.7rem;">PRE-ORDER</span>
+                        <span class="price">₱1,500</span>
+                    </div>
+                    <h3>The Moonlight Lilac (Paperback)</h3>
+                    <p style="color:var(--sage-soft); margin-bottom:10px;">Includes: Volume 1 & 2 (Set)</p>
+                    <p style="margin-bottom:20px; font-size:0.9rem;">Status: <span id="status-moonlight-lilac-pb"
+                            style="color:#4CAF50">Pre-Order
+                            Open</span></p>
+                    <a href="product.html?id=moonlight-lilac-pb" class="btn btn-primary"
+                        style="width:100%; text-align:center;">View Details</a>
+                </div>
+            </div>
+
+            <!-- HARDBOUND -->
+            <div class="product-card">
+                <div class="card-image">
+                    <img src="assets/images/hardbound.png" alt="Hardbound Set"
+                        onerror="this.src='https://via.placeholder.com/400x600/2A2438/E26D6D?text=Hardbound+Set'">
+                </div>
+                <div class="card-info">
+                    <div class="card-meta">
+                        <span
+                            style="color:var(--plum-darker); background:var(--lilac-light); padding: 2px 8px; border-radius:4px; font-size:0.7rem;">PRE-ORDER</span>
+                        <span class="price">₱2,800</span>
+                    </div>
+                    <h3>The Moonlight Lilac (Hardbound)</h3>
+                    <p style="color:var(--sage-soft); margin-bottom:10px;">Includes: Volume 1 & 2 (Set)</p>
+                    <p style="margin-bottom:20px; font-size:0.9rem;">Status: <span id="status-moonlight-lilac-hb"
+                            style="color:#4CAF50">Pre-Order
+                            Open</span></p>
+                    <a href="product.html?id=moonlight-lilac-hb" class="btn btn-primary"
+                        style="width:100%; text-align:center;">View Details</a>
+                </div>
+            </div>
+
+            <!-- HER STORIES PDF -->
+            <div class="product-card">
+                <div class="card-image">
+                    <img src="assets/images/btc2.png" alt="Her Stories PDF"
+                        onerror="this.src='https://via.placeholder.com/400x600/2A2438/D4AF37?text=Her+Stories+PDF'">
+                </div>
+                <div class="card-info">
+                    <div class="card-meta">
+                        <span
+                            style="color:var(--plum-darker); background:var(--gold-accent); padding: 2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700;">DIGITAL</span>
+                        <span class="price">₱250</span>
+                    </div>
+                    <h3>Her Stories Behind the Curtains (PDF Copy)</h3>
+                    <p style="color:var(--sage-soft); margin-bottom:10px;">PDF / E-Book • Digital Download</p>
+                    <p style="margin-bottom:20px; font-size:0.9rem;">Status: <span id="status-her-stories-pdf"
+                            style="color:#4CAF50">Available
+                            Now</span></p>
+                    <a href="product.html?id=her-stories-pdf" class="btn btn-primary"
+                        style="width:100%; text-align:center;">Buy Now</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container text-center" style="padding: 40px; color: var(--sage-soft); font-size: 0.8rem;">
+            <p>&copy; 2025 CassNcase. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Search Removed -->
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/stock-manager.js"></script>
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-menu">
+        <!-- Falling Stars Elements -->
+        <div class="star" style="left:10%; animation-duration:3s;"></div>
+        <div class="star" style="left:30%; animation-duration:5s;"></div>
+        <div class="star" style="left:70%; animation-duration:4s;"></div>
+        <div class="star" style="left:90%; animation-duration:6s;"></div>
+
+        <nav class="mobile-nav-links">
+            <a href="index.html" onclick="toggleMobileMenu()">Home</a>
+            <a href="shop.html" onclick="toggleMobileMenu()">Shop Books</a>
+            <a href="#" onclick="toggleMobileMenu()">FAQs</a>
+        </nav>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/shop.js"></script>
+    <script>
+        document.addEventListener('stock-updated', () => {
+            PRODUCTS.forEach(p => {
+                const el = document.getElementById(`status-${p.id}`);
+                if (el) {
+                    if (p.stock <= 0) {
+                        el.innerText = "Unavailable";
+                        el.style.color = "var(--warning-red)";
+                    } else {
+                        // Digital product check
+                        if (p.isDigital || p.id === 'her-stories-pdf') {
+                            el.innerText = "Available";
+                        } else {
+                            el.innerText = "Pre-Order Open";
+                        }
+                        el.style.color = "#4CAF50";
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
