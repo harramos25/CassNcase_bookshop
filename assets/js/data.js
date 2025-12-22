@@ -23,7 +23,10 @@ const CONFIG = {
         luzon: 50,
         visayas: 70,
         mindanao: 90
-    }
+    },
+
+    // CUSTOM BACKEND API (Google Sheets)
+    stockApiURL: "https://script.google.com/macros/s/AKfycbzGgCWMXAZ2XAuirQ0_YxFqGY4oY0miZm2x2iMvcrwC0021Do7tuq6esc5nVZiluMMYFA/exec"
 };
 
 const PRODUCTS = [

@@ -146,6 +146,13 @@
     <script src="assets/js/main.js"></script>
     <script src="assets/js/shop.js"></script>
     <script>
+        // Init: Sync with Google Sheet
+        (async function () {
+            await StockManager.syncProducts();
+            // Trigger UI update after sync
+            window.dispatchEvent(new CustomEvent('stock-updated'));
+        })();
+
         document.addEventListener('stock-updated', () => {
             PRODUCTS.forEach(p => {
                 const el = document.getElementById(`status-${p.id}`);

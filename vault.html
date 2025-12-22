@@ -127,18 +127,28 @@
             btn.disabled = true;
             btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Casting...`;
 
-            // Collect Data
-            const newStock = {};
-            PRODUCTS.forEach(p => {
+            // Collect & Send Data (Iterate for API)
+            const updates = PRODUCTS.map(p => {
                 const isOpen = document.getElementById(`toggle-${p.id}`).checked;
-                // LOGIC: If Open -> 200 Stock, If Closed -> 0 Stock
-                const val = isOpen ? 200 : 0;
-                newStock[p.id] = val;
-                p.stock = val; // Update local memory too
+                // LOGIC: 1 = Available, 0 = Unavailable
+                const status = isOpen ? 1 : 0;
+
+                // Update local memory visually
+                p.stock = status ? 999 : 0;
+
+                return StockManager.saveStock(p.id, status);
             });
 
-            // Send to Manager
-            const result = await StockManager.saveStock(newStock);
+            // Wait for all API calls
+            const results = await Promise.all(updates);
+
+            // Check if any failed
+            const allSuccess = results.every(r => r.success);
+
+            const result = {
+                success: allSuccess,
+                message: allSuccess ? "All statuses updated!" : "Some updates failed."
+            };
 
             if (result.success) {
                 showToast();
