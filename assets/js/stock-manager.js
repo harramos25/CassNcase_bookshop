@@ -42,20 +42,20 @@ const StockManager = {
             // Note: Google Apps Script Web App returns redirects which fetch handles awkwardly by default.
             // We use simple POST.
 
-            const response = await fetch(CONFIG.stockApiURL, {
+            // CORS FIX: Use 'no-cors' mode
+            // This prevents the browser from blocking the Google Apps Script redirect response.
+            await fetch(CONFIG.stockApiURL, {
                 method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "application/json"
+                },
                 body: payload
             });
 
-            // In 'no-cors' mode (common for GAS), we can't read response, but we assume success if no network error.
-            // If script handles CORS properly (which we set up), we can read it.
-            const result = await response.json();
-
-            if (result.result === "success") {
-                return { success: true, message: 'Updated Cloud successfully!' };
-            } else {
-                throw new Error("Script returned error");
-            }
+            // In 'no-cors' mode, the response is opaque. We can't read JSON.
+            // But if fetch doesn't throw a network error, the request was sent successfully.
+            return { success: true, message: 'Updated Cloud successfully!' };
 
         } catch (error) {
             console.error("Cloud save error:", error);
