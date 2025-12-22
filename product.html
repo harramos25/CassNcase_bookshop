@@ -109,9 +109,10 @@
 
             <!-- CTA -->
             <!-- CTA -->
-            <button id="buy-btn" class="btn btn-primary disabled-btn" disabled
-                style="width:100%; margin-bottom: 20px; padding: 15px; font-size:1.1rem; opacity: 0.6; cursor: not-allowed;">
-                <i class="fas fa-spinner fa-spin"></i> Checking Stock...
+            <!-- CTA -->
+            <button id="buy-btn" class="btn btn-primary"
+                style="width:100%; margin-bottom: 20px; padding: 15px; font-size:1.1rem;">
+                🛒 Pre-Order Now
             </button>
 
             <!-- ACCORDION / DETAILS -->
@@ -455,18 +456,11 @@
         document.head.appendChild(style);
 
         // Init
-        (async function () {
-            try {
-                // cloud sync
-                await StockManager.syncProducts();
-                // render
-                renderProduct(currentId);
-            } catch (e) {
-                console.error(e);
-                // Fallback render if sync fails
-                renderProduct(currentId);
-            }
-        })();
+        try {
+            renderProduct(currentId);
+        } catch (e) {
+            console.error(e);
+        }
 
     </script>
 </body>

@@ -108,10 +108,10 @@
                     <h3>Her Stories Behind the Curtains (PDF Copy)</h3>
                     <p style="color:var(--sage-soft); margin-bottom:10px;">PDF / E-Book • Digital Download</p>
                     <p style="margin-bottom:20px; font-size:0.9rem;">Status: <span id="status-her-stories-pdf"
-                            style="color:var(--sage-soft)">Loading...</span></p>
-                    <a href="product.html?id=her-stories-pdf" id="btn-her-stories-pdf"
-                        class="btn btn-primary disabled-btn"
-                        style="width:100%; text-align:center; pointer-events: none; opacity: 0.6;">Checking Stock...</a>
+                            style="color:#4CAF50">Available
+                            Now</span></p>
+                    <a href="product.html?id=her-stories-pdf" class="btn btn-primary"
+                        style="width:100%; text-align:center;">Buy Now</a>
                 </div>
             </div>
 
@@ -158,16 +158,11 @@
                 const el = document.getElementById(`status-${p.id}`);
                 const btn = document.getElementById(`btn-${p.id}`);
 
-                if (el && btn) {
+                if (el) {
                     if (p.stock <= 0) {
                         // UNAVAILABLE
                         el.innerText = "Unavailable";
                         el.style.color = "var(--warning-red)";
-
-                        btn.innerText = "Unavailable";
-                        btn.style.opacity = "0.5";
-                        btn.style.pointerEvents = "none";
-                        btn.classList.add('disabled');
                     } else {
                         // AVAILABLE
                         // Digital product check
@@ -175,11 +170,6 @@
 
                         el.innerText = isDigital ? "Available" : "Pre-Order Open";
                         el.style.color = "#4CAF50";
-
-                        btn.innerText = isDigital ? "Buy Now" : "Pre-Order Now";
-                        btn.style.opacity = "1";
-                        btn.style.pointerEvents = "auto";
-                        btn.classList.remove('disabled');
                     }
                 }
             });
