@@ -43,19 +43,17 @@ const StockManager = {
             // Note: Google Apps Script Web App returns redirects which fetch handles awkwardly by default.
             // We use simple POST.
 
-            // CORS FIX: Use 'no-cors' + 'text/plain'
-            // Google Apps Script requires text/plain for simple POST requests from browsers.
-            // This ensures the payload is sent correctly even in no-cors mode.
-            await fetch(CONFIG.stockApiURL, {
-                method: "POST",
-                mode: "no-cors",
-                headers: {
-                    "Content-Type": "text/plain;charset=utf-8"
-                },
-                body: payload
+            // USE GET REQUEST for reliability
+            // This avoids POST body parsing issues completely.
+            const url = `${CONFIG.stockApiURL}?action=update&id=${id}&status=${status}`;
+
+            // Fire and Forget (no-cors mode is fine for GET updates too)
+            await fetch(url, {
+                method: "GET",
+                mode: "no-cors"
             });
 
-            // Return success immediately (Fire & Forget)
+            // Return success immediately
             return { success: true, message: 'Updated Cloud successfully!' };
 
         } catch (error) {
