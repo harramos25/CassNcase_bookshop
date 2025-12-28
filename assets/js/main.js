@@ -1,7 +1,7 @@
-// CassNcase Book Shop - Main Script
+// Bookshop System - Main Script
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('CassNcase Book Shop Loaded 🌙');
+    console.log('Bookshop System Loaded 🌙');
 
     // Header Scroll Effect (Magical Glass)
     const header = document.getElementById('main-header');

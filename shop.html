@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop | CassNcase</title>
+    <title>Shop | Bookshop System</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
@@ -19,7 +19,7 @@
     <header id="main-header">
         <div class="container nav-container">
             <!-- Logo -->
-            <a href="index.html" class="logo">CassNcase <span>🌙</span></a>
+            <a href="index.html" class="logo">Bookshop System <span>🌙</span></a>
 
             <!-- Desktop Nav -->
             <nav class="desktop-nav">
@@ -50,68 +50,60 @@
             <!-- Products will be rendered here by JS, but also hardcoding structure for static stability -->
 
             <!-- PAPERBACK -->
+            <!-- PAPERBACK -->
             <div class="product-card">
                 <div class="card-image">
-                    <img src="assets/images/paperback.png" alt="Paperback Set"
+                    <img src="assets/images/1.png" alt="Paperback Set"
                         onerror="this.src='https://via.placeholder.com/400x600/2A2438/7A6C9D?text=Paperback+Set'">
                 </div>
                 <div class="card-info">
                     <div class="card-meta">
-                        <span
-                            style="color:var(--cream-text); background:var(--lilac-deep); padding: 2px 8px; border-radius:4px; font-size:0.7rem;">PRE-ORDER</span>
-                        <span class="price">₱1,500</span>
+                        <span class="badge-preorder">PRE-ORDER</span>
+                        <span class="shop-price">₱2,200</span>
                     </div>
-                    <h3>The Moonlight Lilac (Paperback)</h3>
-                    <p style="color:var(--sage-soft); margin-bottom:10px;">Includes: Volume 1 & 2 (Set)</p>
-                    <p style="margin-bottom:20px; font-size:0.9rem;">Status: <span id="status-moonlight-lilac-pb"
-                            style="color:#4CAF50">Pre-Order
-                            Open</span></p>
-                    <a href="product.html?id=moonlight-lilac-pb" class="btn btn-primary"
-                        style="width:100%; text-align:center;">View Details</a>
+                    <h3>The Aetherium Chronicles (Hardcover)</h3>
+                    <p style="color:#7A7A7A; margin-bottom:10px;">Includes: Volume 1</p>
+                    <p style="margin-bottom:20px; font-size:0.9rem;">Status: <span id="status-aetherium-chronicles-hc"
+                            class="text-status-open">Pre-Order Open</span></p>
+                    <a href="product.html?id=aetherium-chronicles-hc" class="btn-shop-action">View Details</a>
                 </div>
             </div>
 
             <!-- HARDBOUND -->
             <div class="product-card">
                 <div class="card-image">
-                    <img src="assets/images/hardbound.png" alt="Hardbound Set"
+                    <img src="assets/images/3.png" alt="Hardbound Set"
                         onerror="this.src='https://via.placeholder.com/400x600/2A2438/E26D6D?text=Hardbound+Set'">
                 </div>
                 <div class="card-info">
                     <div class="card-meta">
-                        <span
-                            style="color:var(--plum-darker); background:var(--lilac-light); padding: 2px 8px; border-radius:4px; font-size:0.7rem;">PRE-ORDER</span>
-                        <span class="price">₱2,800</span>
+                        <span class="badge-preorder">PRE-ORDER</span>
+                        <span class="shop-price">₱2,200</span>
                     </div>
-                    <h3>The Moonlight Lilac (Hardbound)</h3>
-                    <p style="color:var(--sage-soft); margin-bottom:10px;">Includes: Volume 1 & 2 (Set)</p>
-                    <p style="margin-bottom:20px; font-size:0.9rem;">Status: <span id="status-moonlight-lilac-hb"
-                            style="color:#4CAF50">Pre-Order
-                            Open</span></p>
-                    <a href="product.html?id=moonlight-lilac-hb" class="btn btn-primary"
-                        style="width:100%; text-align:center;">View Details</a>
+                    <h3>The Shadowed Starlight (Hardcover)</h3>
+                    <p style="color:#7A7A7A; margin-bottom:10px;">Includes: Volume 1</p>
+                    <p style="margin-bottom:20px; font-size:0.9rem;">Status: <span id="status-shadowed-starlight-hc"
+                            class="text-status-open">Pre-Order Open</span></p>
+                    <a href="product.html?id=shadowed-starlight-hc" class="btn-shop-action">View Details</a>
                 </div>
             </div>
 
-            <!-- HER STORIES PDF -->
+            <!-- THE CELESTIAL KEY PDF -->
             <div class="product-card">
                 <div class="card-image">
-                    <img src="assets/images/btc2.png" alt="Her Stories PDF"
-                        onerror="this.src='https://via.placeholder.com/400x600/2A2438/D4AF37?text=Her+Stories+PDF'">
+                    <img src="assets/images/2.png" alt="The Celestial Key PDF"
+                        onerror="this.src='https://via.placeholder.com/400x600/2A2438/D4AF37?text=The+Celestial+Key+PDF'">
                 </div>
                 <div class="card-info">
                     <div class="card-meta">
-                        <span
-                            style="color:var(--plum-darker); background:var(--gold-accent); padding: 2px 8px; border-radius:4px; font-size:0.7rem; font-weight:700;">DIGITAL</span>
-                        <span class="price">₱250</span>
+                        <span class="badge-digital">DIGITAL</span>
+                        <span class="shop-price">₱250</span>
                     </div>
-                    <h3>Her Stories Behind the Curtains (PDF Copy)</h3>
-                    <p style="color:var(--sage-soft); margin-bottom:10px;">PDF / E-Book • Digital Download</p>
-                    <p style="margin-bottom:20px; font-size:0.9rem;">Status: <span id="status-her-stories-pdf"
-                            style="color:#4CAF50">Available
-                            Now</span></p>
-                    <a href="product.html?id=her-stories-pdf" class="btn btn-primary"
-                        style="width:100%; text-align:center;">Buy Now</a>
+                    <h3>The Celestial Key (PDF Copy)</h3>
+                    <p style="color:#7A7A7A; margin-bottom:10px;">PDF / E-Book • Digital Download</p>
+                    <p style="margin-bottom:20px; font-size:0.9rem;">Status: <span id="status-celestial-key-pdf"
+                            class="text-status-open">Available Now</span></p>
+                    <a href="product.html?id=celestial-key-pdf" class="btn-shop-action">Buy Now</a>
                 </div>
             </div>
 
@@ -120,7 +112,7 @@
 
     <footer>
         <div class="container text-center" style="padding: 40px; color: var(--sage-soft); font-size: 0.8rem;">
-            <p>&copy; 2025 CassNcase. All rights reserved.</p>
+            <p>&copy; 2025 Bookshop System. All rights reserved.</p>
             <p style="margin-top:5px; font-size: 0.8rem; opacity: 0.7;">This website is a personal portfolio project and
                 is not an official store.</p>
         </div>

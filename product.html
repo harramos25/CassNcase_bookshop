@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details | CassNcase</title>
+    <title>Product Details | Bookshop System</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Nunito:wght@300;400;600;700&family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@400;700&display=swap"
@@ -19,7 +19,7 @@
     <header id="main-header">
         <div class="container nav-container">
             <!-- Logo -->
-            <a href="index.html" class="logo">CassNcase <span>🌙</span></a>
+            <a href="index.html" class="logo">Bookshop System <span>🌙</span></a>
 
             <!-- Desktop Nav -->
             <nav class="desktop-nav">
@@ -62,43 +62,45 @@
         <!-- RIGHT: DETAILS -->
         <div class="product-info">
             <h1 id="product-title">Loading...</h1>
-            <p class="author-tag" style="color:var(--lilac-light); margin-bottom:20px;">by CassNcase</p>
+            <p class="author-tag" style="color:var(--lilac-light); margin-bottom:20px;">by Elara Thornfield</p>
 
             <div class="format-selector">
                 <p style="margin-bottom:15px; font-size:0.9rem; color:var(--lilac-light);">SELECT FORMAT:</p>
 
                 <div class="format-options-container">
-                    <a href="product.html?id=moonlight-lilac-pb" class="format-option card-style" id="opt-pb">
+                    <a href="product.html?id=aetherium-chronicles-hc" class="format-option card-style" id="opt-pb">
                         <div class="format-icon"><i class="fas fa-book"></i></div>
                         <div class="format-details">
-                            <strong>Paperback Set</strong>
-                            <div class="format-subtitle">Volume 1 & 2</div>
+                            <strong>The Aetherium Chronicles</strong>
+                            <div class="format-subtitle">Volume 1 • Hardcover</div>
                         </div>
-                        <div class="format-price">₱1,500</div>
+                        <div class="format-price">₱2,200</div>
                     </a>
 
-                    <a href="product.html?id=moonlight-lilac-hb" class="format-option card-style" id="opt-hb">
+                    <a href="product.html?id=shadowed-starlight-hc" class="format-option card-style" id="opt-hb">
                         <div class="format-icon"><i class="fas fa-book-open"></i></div>
                         <div class="format-details">
-                            <strong>Hardbound Set</strong>
-                            <div class="format-subtitle">Volume 1 & 2</div>
+                            <strong>The Shadowed Starlight</strong>
+                            <div class="format-subtitle">Volume 1 • Hardcover</div>
                         </div>
-                        <div class="format-price">₱2,800</div>
+                        <div class="format-price">₱2,200</div>
                     </a>
+
+
                 </div>
             </div>
 
             <!-- QUANTITY SELECTOR -->
             <div style="margin: 20px 0; display:flex; align-items:center; gap:15px;">
-                <span style="font-size:0.9rem; color:var(--lilac-light);">Quantity:</span>
+                <span class="quantity-label" style="font-size:0.9rem;">Quantity:</span>
                 <div
                     style="display:flex; align-items:center; background:rgba(255,255,255,0.05); border-radius:5px; border:1px solid rgba(255,255,255,0.1);">
-                    <button onclick="updateQty(-1)"
-                        style="padding:5px 15px; background:none; border:none; color:white; cursor:pointer; font-size:1.2rem;">−</button>
+                    <button class="qty-btn" onclick="updateQty(-1)"
+                        style="padding:5px 15px; background:none; border:none; cursor:pointer; font-size:1.2rem;">−</button>
                     <input type="number" id="qty-input" value="1" min="1" max="10"
-                        style="width:50px; text-align:center; border:none; background:none; color:white; padding:5px; -moz-appearance: textfield; appearance: textfield;">
-                    <button onclick="updateQty(1)"
-                        style="padding:5px 15px; background:none; border:none; color:white; cursor:pointer; font-size:1.2rem;">+</button>
+                        style="width:50px; text-align:center; border:none; background:none; padding:5px; -moz-appearance: textfield; appearance: textfield;">
+                    <button class="qty-btn" onclick="updateQty(1)"
+                        style="padding:5px 15px; background:none; border:none; cursor:pointer; font-size:1.2rem;">+</button>
                 </div>
             </div>
 
@@ -135,21 +137,33 @@
                 </ul>
 
                 <div id="terms-section" class="warning-box scroll-style">
-                    <h4 class="warning-title"><i class="fas fa-exclamation-triangle"></i> PLEASE READ BEFORE PURCHASING
+                    <h4 class="warning-title"><i class="fas fa-exclamation-triangle"></i> PLEASE READ BEFORE
+                        PURCHASING
                     </h4>
                     <p class="warning-text">
-                        Yes, this is important. Please don’t skip. I will cry.
+                        (I’m serious. The stars are watching.)
                     </p>
-                    <ul class="warning-list">
-                        <li>This is a Batch 1 pre-order</li>
-                        <li>Pre-order: Dec 19, 2025 – Jan 25, 2026</li>
-                        <li>Delivery: Feb 25, 2026 – Mar 15, 2026</li>
-                        <li>(Because quality takes time, promise.)</li>
-                    </ul>
+                    <p style="margin-bottom: 15px; font-size: 0.9rem;">
+                        This is a Batch 1 pre-order only. Quantities are limited per batch.
+                    </p>
+                    <div class="warning-list" style="list-style: none; padding: 0;">
+                        <p style="margin-bottom: 5px;"><strong>Pre-order window:</strong><br>
+                            📅 December 01, 20XX – January 01, 20XX</p>
+
+                        <p style="margin-top: 15px; margin-bottom: 5px;"><strong>Estimated delivery:</strong><br>
+                            🚚 February 01, 20XX – March 01, 20XX<br>
+                            <span style="font-size: 0.85rem; opacity: 0.8;">(Because cosmic magic — and quality printing
+                                — both take time.)</span>
+                        </p>
+                    </div>
 
                     <div class="terms-agreement">
                         <input type="checkbox" id="terms-check">
-                        <label for="terms-check">I agree with all terms (and yes, I read them)</label>
+                        <label for="terms-check">
+                            <strong>I understand and agree to all terms above.</strong><br>
+                            <span style="font-size: 0.85rem; opacity: 0.8;">Yes, I actually read them. Don’t worry, no
+                                tears were shed today. 🌙✨</span>
+                        </label>
                     </div>
                 </div>
             </div>
@@ -172,7 +186,7 @@
             <div class="footer-grid">
                 <!-- Column 1: Identity -->
                 <div class="footer-col">
-                    <a href="index.html" class="logo" style="font-size: 1.8rem; margin-bottom: 15px;">CassNcase
+                    <a href="index.html" class="logo" style="font-size: 1.8rem; margin-bottom: 15px;">Bookshop System
                         <span>🌙</span></a>
                     <p style="font-style: italic; font-family: var(--font-heading);">"Stories written with love, chaos,
                         and a little heartbreak."</p>
@@ -190,25 +204,18 @@
                 <div class="footer-col">
                     <h4>Stay Magical</h4>
                     <div class="social-icons">
-                        <a href="https://www.facebook.com/share/1BVU6mqmNi/" class="social-icon" target="_blank"><i
+                        <a href="https://www.facebook.com" class="social-icon" target="_blank"><i
                                 class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/cassncase02?igsh=MXdmNG1jajBqYjhmaQ==" class="social-icon"
-                            target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.tiktok.com/@15phoebepsyd?_r=1&_t=ZS-92QXstHuQwk" class="social-icon"
-                            target="_blank"><i class="fab fa-tiktok"></i></a>
-                        <a href="https://www.wattpad.com/user/CassNcase" class="social-icon" title="Wattpad"
-                            target="_blank">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                                <path
-                                    d="M20.6,6L17.8,19.3c-0.1,0.5-0.6,0.9-1.1,0.9h-2.1c-0.5,0-0.9-0.3-1.1-0.7L12,13.2l-1.6,6.3c-0.1,0.4-0.5,0.7-1,0.7H7.3c-0.5,0-1-0.4-1.1-0.9L3.4,6h2.4l1.8,9.7l2.2-9.7h2.3l2.2,9.7l1.8-9.7H20.6z" />
-                            </svg>
-                        </a>
+                        <a href="https://www.instagram.com" class="social-icon" target="_blank"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com" class="social-icon" target="_blank"><i
+                                class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
             </div>
             <div class="bottom-bar">
-                <p>&copy; 2025 CassNcase. All rights reserved.</p>
-                <p style="margin-top:5px; font-style:italic; opacity:0.6;">Mahal ka ni Thera.</p>
+                <p>&copy; 2025 Bookshop System. All rights reserved.</p>
+
                 <p style="margin-top:5px; font-size: 0.8rem; opacity: 0.7;">This website is a personal portfolio project
                     and is not an official store.</p>
             </div>
@@ -291,46 +298,79 @@
                 btn.style.cursor = "pointer";
             }
 
-            // Specs
-            if (currentProduct.isDigital) {
-                document.getElementById('specs-list').innerHTML = `
-                    <li>Her Stories Behind The Curtains (PDF copy of Cythera's Point Of View)</li>
-                `;
-            } else {
-                document.getElementById('specs-list').innerHTML = `
-                    <li>Size: ${currentProduct.description.size}</li>
-                    <li>Cover: ${currentProduct.description.cover}</li>
-                    <li>Inside: ${currentProduct.description.pages}</li>
-                `;
+            // Specs Rendering
+            const specsList = document.getElementById('specs-list');
+            specsList.innerHTML = ''; // Clear
+
+            if (currentProduct.specs && Array.isArray(currentProduct.specs)) {
+                // Dynamic Specs from Array
+                currentProduct.specs.forEach(spec => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<strong>${spec.label}:</strong> ${spec.value}`;
+                    li.style.marginBottom = "8px"; // Spacing
+                    specsList.appendChild(li);
+                });
+                // Update Specs Header based on type
+                const specsHeader = specsList.previousElementSibling; // The h3
+                if (currentProduct.isDigital) {
+                    specsHeader.innerHTML = "📐 Digital Copy Specifications";
+                } else {
+                    specsHeader.innerHTML = "📐 Book Specifications";
+                }
             }
 
             // CONDITIONAL SECTIONS (Freebies & Warning)
-            const freebiesSection = document.getElementById('freebies-list').previousElementSibling; // The H3
+            const freebiesHeader = document.getElementById('freebies-list').previousElementSibling; // The H3
             const freebiesList = document.getElementById('freebies-list');
             const termsSection = document.getElementById('terms-section');
             const formatSelector = document.querySelector('.format-selector');
 
             if (currentProduct.isDigital) {
                 // HIDE for Digital
-                freebiesSection.style.display = 'none';
+                freebiesHeader.style.display = 'none';
                 freebiesList.style.display = 'none';
                 termsSection.style.display = 'none';
                 if (formatSelector) formatSelector.style.display = 'none';
             } else {
                 // SHOW for Physical
-                freebiesSection.style.display = 'block';
+                freebiesHeader.style.display = 'block';
                 freebiesList.style.display = 'block';
                 termsSection.style.display = 'block';
                 if (formatSelector) formatSelector.style.display = 'block';
 
-                // Populate Freebies only if visible
-                freebiesList.innerHTML = currentProduct.description.freebies.map(f => `<li>${f}</li>`).join('');
+                // Update Freebies Header
+                if (currentProduct.description && currentProduct.description.freebies_title) {
+                    freebiesHeader.innerText = currentProduct.description.freebies_title;
+                } else {
+                    freebiesHeader.innerText = "Included Freebies 🎁";
+                }
+
+                // Populate Freebies
+                let freebiesContent = '';
+                if (currentProduct.description && currentProduct.description.freebies_intro) {
+                    // Intro line (e.g. "Every Collector's Edition includes:")
+                    freebiesContent += `<li style="list-style:none; margin-left:-20px; font-weight:700; margin-bottom:10px;">${currentProduct.description.freebies_intro}</li>`;
+                }
+
+                if (currentProduct.freebies && currentProduct.freebies.length > 0) {
+                    freebiesContent += currentProduct.freebies.map(f => `<li>${f}</li>`).join('');
+                } else if (currentProduct.description && currentProduct.description.freebies) {
+                    // Fallback for old structure if any
+                    freebiesContent += currentProduct.description.freebies.map(f => `<li>${f}</li>`).join('');
+                }
+
+                freebiesList.innerHTML = freebiesContent;
             }
 
             // Highlight selection
             document.querySelectorAll('.format-option').forEach(el => el.classList.remove('active'));
-            if (id.includes('pb')) document.getElementById('opt-pb').classList.add('active');
-            else document.getElementById('opt-hb').classList.add('active');
+            if (id.includes('pb')) {
+                const optPb = document.getElementById('opt-pb');
+                if (optPb) optPb.classList.add('active');
+            } else {
+                const optHb = document.getElementById('opt-hb');
+                if (optHb) optHb.classList.add('active');
+            }
 
             // --- CAROUSEL SETUP ---
             currentImgIndex = 0; // Reset to start

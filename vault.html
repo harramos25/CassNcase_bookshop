@@ -74,11 +74,11 @@
                 const isOpen = p.stock > 0;
 
                 // Explicit Image Mapping per User Request
-                let imgPath = 'assets/images/paperback.png'; // Default
-                if (p.id.includes('hb') || p.format.toLowerCase().includes('hardbound')) {
-                    imgPath = 'assets/images/hardbound.png';
-                } else if (p.id === 'her-stories-pdf') {
-                    imgPath = 'assets/images/btc2.png';
+                let imgPath = 'assets/images/1.png'; // Default
+                if (p.id === 'shadowed-starlight-hc') {
+                    imgPath = 'assets/images/3.png';
+                } else if (p.id === 'celestial-key-pdf') {
+                    imgPath = 'assets/images/2.png';
                 }
 
                 const div = document.createElement('div');
@@ -94,7 +94,7 @@
                     
                     <div class="vault-toggle-group">
                         <span id="label-${p.id}" class="vault-status-label" style="color:${isOpen ? 'var(--sage-soft)' : '#E26D6D'}">
-                            ${isOpen ? (p.id === 'her-stories-pdf' ? 'Available' : 'Pre-order Active') : 'Unavailable'}
+                            ${isOpen ? (p.id === 'celestial-key-pdf' ? 'Available' : 'Pre-order Active') : 'Unavailable'}
                         </span>
                         <label class="switch">
                             <input type="checkbox" id="toggle-${p.id}" ${isOpen ? 'checked' : ''} onchange="updateLabel('${p.id}')">

@@ -1,4 +1,4 @@
-// CassNcase Book Shop - Data & Configuration
+// Bookshop System - Data & Configuration
 
 const CONFIG = {
     // GOOGLE FORM CONNECTION
@@ -31,67 +31,72 @@ const CONFIG = {
 
 const PRODUCTS = [
     {
-        id: "moonlight-lilac-pb",
-        title: "The Moonlight Lilac (Paperback Set)",
-        format: "Paperback",
-        includes: "Volume 1 & 2",
-        price: 1500,
-        stock: 199, // MANAGED MANUALLY HERE
-        images: ["paperback2.png", "paperback1.png"],
+        id: "aetherium-chronicles-hc",
+        title: "The Aetherium Chronicles",
+        format: "Hardcover",
+        includes: "Volume 1",
+        price: 2200,
+        stock: 199,
+        images: ["1.png", "1.1.png"],
+        isPreOrder: true,
+        batch: "Batch 1",
+        description: { // Keeping for backward compat if needed, but we rely on specs now
+            freebies_title: "Included Starbound Freebies 🎁",
+            freebies_intro: "Every Collector’s Edition includes:"
+        },
+        specs: [
+            { label: "Trim Size", value: "9\" × 6\"" },
+            { label: "Cover Type", value: "Premium Hardcover" },
+            { label: "Interior", value: "Includes 4 full-color illustrated starplates" }
+        ],
+        freebies: [
+            "3 collectible Aetherium character cards",
+            "1 exclusive Starlight bookmark",
+            "1 limited artifact freebie from the Aetherium vault",
+            "1 sealed secret starbound surprise ✨"
+        ]
+    },
+    {
+        id: "shadowed-starlight-hc",
+        title: "The Shadowed Starlight",
+        format: "Hardcover",
+        includes: "Volume 1",
+        price: 2200,
+        stock: 50,
+        images: ["3.png", "3.1.png"],
         isPreOrder: true,
         batch: "Batch 1",
         description: {
-            size: "8.5\" x 5.5\"",
-            cover: "Matte laminated cover",
-            pages: "4 full color illustrated pages",
-            freebies: [
-                "3 photocards",
-                "1 special bookmark",
-                "1 special secret freebie"
-            ]
-        }
+            freebies_title: "Included Starbound Freebies 🎁",
+            freebies_intro: "Every Collector’s Edition includes:"
+        },
+        specs: [
+            { label: "Trim Size", value: "9\" × 6\"" },
+            { label: "Cover Type", value: "Premium Hardcover" },
+            { label: "Interior", value: "Includes 4 full-color illustrated starplates" }
+        ],
+        freebies: [
+            "3 collectible Aetherium character cards",
+            "1 exclusive Starlight bookmark",
+            "1 limited artifact freebie from the Aetherium vault",
+            "1 sealed secret starbound surprise ✨"
+        ]
     },
     {
-        id: "moonlight-lilac-hb",
-        title: "The Moonlight Lilac (Hardbound Set)",
-        format: "Hardbound",
-        includes: "Volume 1 & 2",
-        price: 2800,
-        stock: 50, // MANAGED MANUALLY HERE
-        images: ["hardbound2.png", "hardbound1.png"],
-        isPreOrder: true,
-        batch: "Batch 1",
-        description: {
-            size: "9\" x 6\"",
-            cover: "Hardcover",
-            pages: "4 color pages inside the book",
-            freebies: [
-                "3 photocards",
-                "1 special bookmark",
-                "1 special freebie from Cythera",
-                "1 secret freebie"
-            ]
-        }
-    },
-    {
-        id: "her-stories-pdf",
-        title: "Her Stories Behind the Curtains (PDF Copy)",
+        id: "celestial-key-pdf",
+        title: "The Celestial Key (PDF Copy)",
         format: "PDF / E-Book",
         includes: "Digital Copy",
         price: 250,
-        stock: 999, // Digital = Always "In Stock"
-        images: ["btc1.png", "btc2.png"], // Index 0: Details, Index 1: Shop (Will verify logic)
+        stock: 999,
+        images: ["2.png", "2.1.png"],
         isPreOrder: false,
         isDigital: true,
         batch: "Digital",
-        description: {
-            size: "Digital Download (PDF)",
-            cover: "Exclusive E-Book Cover",
-            pages: "Full Story Content",
-            freebies: [
-                "Digital Signature",
-                "Mobile Wallpaper"
-            ]
-        }
+        specs: [
+            { label: "Format", value: "PDF (High-resolution)" },
+            { label: "Content", value: "<br>• Exclusive behind-the-scenes stories<br>• Secret lore entries<br>• Personal letters and unseen moments from Nyra Caelum’s point of view" }
+        ],
+        freebies: [] // No physical freebies
     }
 ];

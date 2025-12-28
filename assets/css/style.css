@@ -1,18 +1,45 @@
-/* CassNcase Official Book Shop - Design System */
+/* Bookshop System - Design System */
 
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Nunito:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
-    --plum-midnight: #1a1523;
-    --plum-darker: #2A2438;
-    --lilac-deep: #7A6C9D;
-    --lilac-light: #B5A8D1;
-    --sage-soft: #9BB8A0;
-    --gold-accent: #D4AF37;
-    --cream-text: #F8F5F2;
-    --warning-red: #E26D6D;
-    --glass-bg: rgba(42, 36, 56, 0.6);
-    /* More transparent */
+    /* NEW THEME: Soft Moon White */
+    --bg-paper: #FAF7F5;
+    /* Soft Moon White */
+    --accent-lilac: #C6B7E2;
+    /* Lilac Bloom */
+    --accent-rose: #E7B6C8;
+    /* Dusty Rose */
+    --accent-teal: #9ED4CC;
+    /* Mist Teal */
+    --text-primary: #2C2C2C;
+    /* Charcoal Ink */
+    --text-muted: #7A7A7A;
+    /* Fog Gray */
+    --warning: #E88C9A;
+    /* Rose Ember */
+    --card-surface: #F2EEF2;
+    /* Pearl Gray */
+
+    /* Mappings for existing widely used variables to new palette to minimize breakage */
+    --plum-midnight: var(--bg-paper);
+    /* Background is now light */
+    --plum-darker: var(--card-surface);
+    /* Darker areas are now Pearl Gray */
+    --lilac-deep: var(--text-primary);
+    /* Deep text is now Charcoal */
+    --lilac-light: var(--accent-lilac);
+    /* Light accents are now Lilac Bloom */
+    --sage-soft: var(--text-muted);
+    /* Soft text is now Fog Gray */
+    --gold-accent: var(--accent-teal);
+    /* Gold accents -> Mist Teal */
+    --cream-text: var(--text-primary);
+    /* Cream text -> Charcoal Ink (inverted) */
+    --warning-red: var(--warning);
+
+    --glass-bg: rgba(255, 255, 255, 0.6);
+    /* White glass */
 
     --font-heading: 'Cinzel Decorative', cursive;
     --font-serif: 'Playfair Display', serif;
@@ -22,6 +49,9 @@
 
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --container-width: 1200px;
+
+    /* SHADOW SYSTEM */
+    --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.06), 0 6px 14px rgba(0, 0, 0, 0.04);
 }
 
 /* RESET */
@@ -33,12 +63,11 @@
 
 body {
     font-family: var(--font-body);
-    background-color: var(--plum-midnight);
-    color: var(--cream-text);
+    background-color: var(--bg-paper);
+    color: var(--text-primary);
     line-height: 1.7;
     overflow-x: hidden;
     position: relative;
-    /* Phase 5: Grain Overlay */
 }
 
 /* Grain Noise Overlay */
@@ -51,11 +80,14 @@ body::before {
     height: 100%;
     pointer-events: none;
     z-index: 9999;
-    opacity: 0.03;
+    opacity: 0.4;
+    /* Increased opacity for light mode visibility */
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+    /* Better blending on light bg */
 }
 
-/* Lighting Gradient */
+/* Lighting Gradient - Adjusted for Light Mode */
 body::after {
     content: "";
     position: fixed;
@@ -63,7 +95,7 @@ body::after {
     left: -200px;
     width: 800px;
     height: 800px;
-    background: radial-gradient(circle, rgba(122, 108, 157, 0.15) 0%, rgba(42, 36, 56, 0) 70%);
+    background: radial-gradient(circle, rgba(198, 183, 226, 0.2) 0%, rgba(250, 247, 245, 0) 70%);
     z-index: -1;
     pointer-events: none;
 }
@@ -142,9 +174,11 @@ ul {
 
 /* Phase 4: Button Interactions */
 .btn-primary {
-    background: var(--lilac-deep);
-    color: var(--plum-darker);
-    box-shadow: 0 10px 30px rgba(122, 108, 157, 0.3);
+    background: #F4D03F;
+    /* Soft Butter Yellow */
+    color: #2E1A47;
+    /* Dark Indigo */
+    box-shadow: var(--shadow-soft);
 }
 
 .btn-primary:hover {
@@ -207,12 +241,12 @@ header {
     /* Nuclear Z-Index */
     transform: translateZ(0);
     /* Force GPU Layer to fix stacking */
-    background: rgba(20, 10, 30, 0.85);
-    /* Deep purple glass */
+    background: rgba(255, 255, 255, 0.85);
+    /* White glass */
     backdrop-filter: blur(12px);
     /* Frosted effect */
-    border-bottom: 1px solid rgba(255, 215, 0, 0.15);
-    /* Faint gold line */
+    border-bottom: 1px solid rgba(198, 183, 226, 0.3);
+    /* Lilac border */
     transition: all 0.4s ease;
     padding: 15px 0;
 }
@@ -220,8 +254,11 @@ header {
 header.scrolled {
     padding: 10px 0;
     /* Shrink on scroll */
-    background: rgba(20, 10, 30, 0.95);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.5);
+    /* Light Glassy Effect */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 .nav-container {
@@ -236,7 +273,8 @@ header.scrolled {
     /* Decorative serif */
     font-size: 1.6rem;
     font-weight: 700;
-    color: var(--cream-text);
+    color: #2E1A47;
+    /* Dark Indigo */
     display: flex;
     align-items: center;
     gap: 10px;
@@ -343,13 +381,14 @@ header.scrolled {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: linear-gradient(135deg, #1a0b2e 0%, #2d1b4e 100%);
+    background: linear-gradient(135deg, var(--bg-paper) 0%, var(--accent-lilac) 100%);
     z-index: 9000;
     /* Below Header (10000) */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.4s ease;
@@ -446,7 +485,7 @@ header.scrolled {
     align-items: center;
     justify-content: center;
     padding-top: 100px;
-    background: linear-gradient(135deg, var(--plum-midnight) 0%, var(--plum-darker) 100%);
+    background: linear-gradient(120deg, #C6B7E2 0%, #E7B6C8 50%, #FAF7F5 100%);
     position: relative;
     overflow: hidden;
 }
@@ -517,10 +556,12 @@ header.scrolled {
     /* Responsive Hero Text */
     line-height: 1.1;
     margin-bottom: 25px;
-    background: linear-gradient(to right, #E0D6FF, #B5A8D1);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #2E1A47;
+    /* Dark Indigo */
+    font-weight: 800;
+    -webkit-text-stroke: 0px;
+    background: none;
+    -webkit-text-fill-color: initial;
     opacity: 0;
     animation: fadeUp 1s ease-out 0.2s forwards;
 }
@@ -533,10 +574,11 @@ header.scrolled {
 
 .hero-text .hero-subtitle {
     font-size: 1.15rem;
-    color: var(--sage-soft);
+    color: #5D4E6D;
+    /* Medium Purple/Grey */
     margin-bottom: 40px;
     font-style: normal;
-    font-weight: 300;
+    font-weight: 600;
     opacity: 0;
     animation: fadeUp 1s ease-out 0.4s forwards;
 }
@@ -749,10 +791,11 @@ header.scrolled {
 }
 
 .main-footer {
-    background-color: var(--plum-darker);
+    background-color: #F2EEF2;
+    /* Pearl Gray - Light Background for Dark Text */
     padding: 80px 0 20px;
     position: relative;
-    border-top: 1px solid rgba(122, 108, 157, 0.1);
+    border-top: 1px solid rgba(46, 26, 71, 0.05);
 }
 
 .footer-grid {
@@ -763,14 +806,16 @@ header.scrolled {
 }
 
 .footer-col h4 {
-    color: var(--lilac-light);
+    color: #2E1A47;
+    /* Dark Indigo */
     font-family: var(--font-accent);
     font-size: 1.2rem;
     margin-bottom: 25px;
 }
 
 .footer-col p {
-    color: var(--sage-soft);
+    color: #4A3B55;
+    /* Dark Slate Purple */
     font-size: 0.95rem;
     margin-bottom: 15px;
     line-height: 1.6;
@@ -781,7 +826,8 @@ header.scrolled {
 }
 
 .footer-links a {
-    color: var(--sage-soft);
+    color: #4A3B55;
+    /* Dark Slate Purple */
     transition: var(--transition-smooth);
 }
 
@@ -800,14 +846,16 @@ header.scrolled {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
+    /* background: rgba(255, 255, 255, 0.05); Removed for clean look */
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--lilac-light);
+    color: #2E1A47;
+    /* Solid Dark Indigo */
+    border: 1px solid rgba(46, 26, 71, 0.1);
     transition: var(--transition-smooth);
-    border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 
 .social-icon:hover {
     background: var(--lilac-deep);
@@ -2204,3 +2252,690 @@ input:checked+.slider:before {
         /* Allow smaller cards on mobile */
     }
 }
+
+/* PRODUCT CARD UPDATES */
+.product-card h3 {
+    font-size: 1.15rem;
+    color: #2E1A47 !important;
+    /* Dark Indigo for Title */
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.card-meta .price {
+    color: #3C1053 !important;
+    /* Deep Violet for Price */
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+/* PRE-ORDER / DIGITAL BADGES */
+.card-meta span:first-child {
+    color: #FFFFFF !important;
+    background-color: #2E1A47 !important;
+    font-weight: 700;
+}
+
+/* STATUS TEXT */
+#status-aetherium-chronicles-hc,
+#status-shadowed-starlight-hc,
+#status-celestial-key-pdf {
+    color: #00796B !important;
+    /* Teal */
+    font-weight: 600;
+}
+
+/* --- MASTER COLOR PLAN OVERRIDES --- */
+/* 1. Core Palette & Footer */
+.footer-col h4 {
+    color: #2E1A47 !important;
+    /* Deep Indigo */
+}
+
+.footer-links a {
+    color: #4A3B55 !important;
+    /* Dark Slate Purple */
+}
+
+/* 2. Product Cards */
+/* Black Rectangle (Badge) -> Deep Rose/Magenta */
+.card-meta span:first-child {
+    background-color: #C2185B !important;
+    /* Deep Rose */
+    color: #FFFFFF !important;
+}
+
+/* Price -> Vivid Violet */
+.card-meta .price,
+.format-price {
+    color: #9C27B0 !important;
+    /* Vivid Violet */
+}
+
+/* Status Text -> Deep Teal */
+#status-aetherium-chronicles-hc,
+#status-shadowed-starlight-hc,
+#status-celestial-key-pdf {
+    color: #00796B !important;
+    /* Deep Teal */
+}
+
+/* 3. Format Selector */
+.format-option {
+    border-color: rgba(123, 31, 162, 0.3) !important;
+}
+
+.format-option.active,
+.format-option:hover {
+    border-color: #7B1FA2 !important;
+    /* Solid Violet */
+    background: rgba(123, 31, 162, 0.05) !important;
+}
+
+.format-details strong,
+.format-subtitle,
+.format-icon {
+    color: #7B1FA2 !important;
+    /* Deep Violet */
+}
+
+/* SELECT FORMAT Label */
+.format-selector p {
+    color: #2E1A47 !important;
+    /* Deep Indigo */
+    font-weight: 700;
+}
+
+/* 4. Quantity Section */
+/* Quantity Label */
+.quantity-label {
+    color: #7B1FA2 !important;
+    /* Deep Violet */
+    font-weight: 700;
+}
+
+/* Input Box */
+#qty-input {
+    color: #7B1FA2 !important;
+    /* Dark Violet */
+    border: 1px solid #7B1FA2 !important;
+    background-color: #FFFFFF !important;
+    /* White */
+    font-weight: 700;
+}
+
+/* Buttons */
+.qty-btn {
+    color: #7B1FA2 !important;
+    /* Deep Violet */
+    transition: color 0.3s;
+}
+
+.qty-btn:hover {
+    color: #FFD700 !important;
+    /* Gold/Yellow */
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+/* 5. Warning/Terms Box */
+#terms-section h4 {
+    color: #E6E6FA !important;
+    /* Light Lavender */
+}
+
+#terms-section label,
+#terms-section li,
+#terms-section p {
+    color: #FFFFFF !important;
+    /* Pure White */
+}
+
+/* 6. Author Tag */
+.author-tag {
+    color: #7B1FA2 !important;
+    /* Deep Violet */
+}
+
+/* 7. Warning Box Redesign */
+.warning-box {
+    background: rgba(243, 229, 245, 0.9) !important;
+    /* Soft Lilac */
+    border: 1px solid #7B1FA2 !important;
+    color: #2E1A47 !important;
+    /* Deep Indigo text */
+    box-shadow: 0 10px 30px rgba(123, 31, 162, 0.15) !important;
+}
+
+#terms-section h4 {
+    color: #7B1FA2 !important;
+    /* Deep Violet Title */
+}
+
+#terms-section p,
+#terms-section li,
+#terms-section label {
+    color: #4A3B55 !important;
+    /* Dark Slate Purple Text */
+}
+
+
+/* 8. Checkout Theme Overhaul */
+/* Main Form Container */
+.checkout-main {
+    background: rgba(255, 255, 255, 0.95) !important;
+    /* Frosted White */
+    color: #4A148C !important;
+    /* Deep Violet Text */
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* Input Fields */
+.form-group input,
+.form-group textarea,
+.form-group select {
+    background: #F3E5F5 !important;
+    /* Pale Purple Box */
+    border: 1px solid #7B1FA2 !important;
+    /* Deep Purple */
+    color: #2E1A47 !important;
+    /* Deep Indigo text */
+    font-weight: 600;
+}
+
+.form-group label {
+    color: #9575CD !important;
+    /* Medium Purple placeholder */
+    font-weight: 500;
+}
+
+/* Active/Focus state */
+.form-group.floating input:focus,
+.form-group.floating textarea:focus,
+.form-group.floating select:focus {
+    background: #FFFFFF !important;
+    box-shadow: 0 0 10px rgba(123, 31, 162, 0.2) !important;
+}
+
+/* Place Order Button */
+#submit-btn {
+    background: #F4D03F !important;
+    /* Psyduck Yellow */
+    color: #2E1A47 !important;
+    /* Dark Indigo */
+    font-weight: 800 !important;
+    font-size: 1.2rem !important;
+    text-transform: uppercase;
+    border: 1px solid #F4D03F !important;
+    box-shadow: 0 5px 15px rgba(244, 208, 63, 0.4) !important;
+}
+
+#submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(244, 208, 63, 0.6) !important;
+}
+
+/* Payment Method Buttons */
+.payment-card {
+    background: #FFFFFF !important;
+    border: 2px solid #2E1A47 !important;
+    color: #2E1A47 !important;
+}
+
+.payment-card span,
+.payment-card .card-icon {
+    color: #2E1A47 !important;
+}
+
+/* Active Payment State */
+.payment-card.active {
+    background: #E1BEE7 !important;
+    /* Light Purple Fill */
+    border-color: #7B1FA2 !important;
+}
+
+/* Order Summary Total */
+.gold-total {
+    color: #7B1FA2 !important;
+    /* Deep Violet */
+    font-size: 1.8rem !important;
+    text-shadow: none !important;
+}
+/* 9. Checkout Text & Payment Hover Refinements */
+/* Force Deep Violet on specific text elements */
+.section-subtitle,
+.form-group label,
+.ref-guide-trigger {
+    color: #4A148C !important; /* Deep Violet */
+}
+
+/* Payment Cards Hover - Pink Palette */
+.payment-card:hover {
+    background: #FCE4EC !important; /* Pink Light */
+    border-color: #F48FB1 !important; /* Pink Accent */
+    transform: translateY(-3px);
+}
+
+
+/* 10. Fix Checkout Input Visibility */
+/* Force background and border on floating inputs to prevent invisibility */
+.checkout-main .form-group.floating input,
+.checkout-main .form-group.floating textarea,
+.checkout-main .form-group.floating select {
+    background-color: #F3E5F5 !important; /* Pale Purple */
+    border: 1px solid #7B1FA2 !important; /* Deep Purple Border */
+    border-radius: 8px !important;
+    color: #4A148C !important; /* Deep Violet Text inside */
+    padding: 10px 15px !important;
+    height: 50px !important; /* Ensure height */
+    box-shadow: none !important;
+}
+
+/* Adjust label position since we added a border/box */
+.checkout-main .form-group.floating label {
+    left: 15px !important;
+    top: 50% !important;
+    transform: translateY(-50%);
+    padding: 0 5px;
+    background: transparent; /* Or #F3E5F5 if it overlaps */
+}
+
+/* Active State for fixed inputs */
+.checkout-main .form-group.floating input:focus,
+.checkout-main .form-group.floating textarea:focus,
+.checkout-main .form-group.floating select:focus {
+    background-color: #FFFFFF !important;
+    border-color: #4A148C !important;
+    box-shadow: 0 0 10px rgba(123, 31, 162, 0.3) !important;
+}
+
+/* Label Move on Focus/Valid */
+.checkout-main .form-group.floating input:focus + label,
+.checkout-main .form-group.floating input:not(:placeholder-shown) + label {
+    top: -10px !important;
+    left: 10px !important;
+    font-size: 0.8rem !important;
+    background: #F3E5F5 !important; /* Hide line behind label */
+    color: #4A148C !important;
+}
+
+
+/* 11. Fix Payment Details (QR/Bank) Coloring */
+/* QR Box Background */
+.qr-reveal-box.active {
+    background: rgba(255, 255, 255, 0.5) !important;
+    border: 1px solid #E1BEE7 !important; /* Light Purple */
+}
+.qr-item p {
+    color: #4A148C !important; /* Deep Violet */
+    font-weight: 600;
+}
+
+/* Bank Transfer Details Card */
+.copy-card {
+    background: #F3E5F5 !important; /* Pale Purple */
+    border: 1px solid #7B1FA2 !important;
+}
+.copy-card-header {
+    color: #4A148C !important;
+    border-bottom: 1px solid rgba(123, 31, 162, 0.2) !important;
+}
+.copy-row span {
+    color: #4A148C !important;
+}
+.copy-row strong {
+    color: #2E1A47 !important; /* Dark Indigo */
+}
+.copy-input-group {
+    background: #FFFFFF !important;
+    border: 1px solid #7B1FA2 !important;
+}
+.copy-input-group strong {
+    color: #2E1A47 !important;
+}
+
+
+/* 12. Fix Select Label Overlap */
+/* For Select boxes, always float the label because they always have a value/placeholder visible */
+.checkout-main .form-group.floating select + label {
+    top: -10px !important;
+    left: 10px !important;
+    font-size: 0.8rem !important;
+    background: #F3E5F5 !important;
+    color: #4A148C !important;
+}
+
+
+/* 13. Fix Reference Number Text Position */
+/* Adjust the Reference Number label specifically as it appears too low */
+.checkout-main .form-group.floating input[name='entry.refNumber'] + label {
+    top: 45% !important; /* Move slightly up from 50% */
+    transform: translateY(-50%);
+}
+
+
+/* 14. Fix Reference Number Label Alignment (Robust) */
+/* Force perfect vertical centering for the Reference Number Label */
+.checkout-main .form-group.floating input[name='entry.refNumber']:placeholder-shown + label {
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    left: 15px !important;
+    color: #4A148C !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+}
+
+
+/* 15. Fix Complete Home Address Floating Label */
+/* Ensure textarea labels float correctly when typing or valid */
+.checkout-main .form-group.floating textarea:focus + label,
+.checkout-main .form-group.floating textarea:not(:placeholder-shown) + label,
+.checkout-main .form-group.floating textarea:valid + label {
+    top: -10px !important;
+    left: 10px !important;
+    font-size: 0.8rem !important;
+    background: #F3E5F5 !important;
+    color: #4A148C !important;
+}
+
+/* Ensure the textarea text doesn't overlap the label position */
+.checkout-main .form-group.floating textarea {
+    padding-top: 15px !important;
+}
+
+
+/* 16. Fix Reference Number Label Alignment 3.0 (Absolute Force) */
+/* Hide default placeholder so label can take its place */
+.checkout-main .form-group.floating input[name='entry.refNumber']::placeholder {
+    opacity: 0 !important;
+}
+
+/* Force label to valid vertical center when input is empty (placeholder shown) */
+.checkout-main .form-group.floating input[name='entry.refNumber']:placeholder-shown + label {
+    position: absolute !important;
+    top: 50% !important;
+    left: 15px !important;
+    transform: translateY(-50%) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 1rem !important;
+    color: #4A148C !important;
+    width: auto !important;
+    height: auto !important;
+    pointer-events: none;
+}
+
+
+/* 17. Fix Reference Number Label Alignment 4.0 (The Final Fix) */
+/* Ensure the label has absolutely no interference from sibling elements */
+.checkout-main .form-group.floating input[name='entry.refNumber'] + label {
+    z-index: 10; /* Ensure it's above other things but below interactive */
+}
+
+/* When placeholder is shown (empty input), force EXACT center match with other inputs */
+.checkout-main .form-group.floating input[name='entry.refNumber']:placeholder-shown + label {
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    left: 15px !important;
+    color: #4A148C !important;
+    font-size: 1rem !important; /* Match Full Name default size */
+    margin: 0 !important;
+    padding: 0 !important;
+    position: absolute !important;
+}
+
+/* Ensure the ref-guide-trigger doesn't push the label */
+.ref-guide-trigger {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+}
+
+
+/* 19. Reposition Reference Guide Link */
+/* Move 'Where do I find this?' below the textbox to the right */
+.ref-guide-trigger {
+    position: absolute !important;
+    top: auto !important;
+    bottom: -25px !important; /* Push below the input */
+    right: 5px !important;
+    transform: none !important;
+    font-size: 0.8rem;
+    color: #4A148C !important;
+}
+
+/* Ensure the parent form-group has space for this hanging link */
+.checkout-main .form-group.floating {
+    margin-bottom: 30px !important;
+    position: relative; /* Ensure absolute child relates to this */
+}
+
+
+/* 20. Success Page Redesign (Card on Card) */
+/* 1. Background Wrapper */
+.success-wrapper {
+    background: #FAF7F5 !important; /* Soft Moon White */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* 2. Success Card Container */
+.success-card {
+    background: #F2EEF2 !important; /* Pearl Gray */
+    border: 1px solid #C6B7E2 !important; /* Lilac Bloom */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1) !important;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* 3. Text Styling */
+.success-title {
+    color: #2C2C2C !important; /* Charcoal Ink */
+    text-shadow: none !important;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+.success-msg-main {
+    color: #2C2C2C !important; /* Charcoal Ink */
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.success-msg-sub {
+    color: #7A7A7A !important; /* Fog Gray */
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* 4. Button Styling */
+.btn-ghost-gold {
+    background: #2C2C2C !important; /* Charcoal Ink */
+    color: #FAF7F5 !important; /* Soft Moon White */
+    border: none !important;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(44, 44, 44, 0.3);
+    transition: transform 0.3s ease;
+}
+.btn-ghost-gold:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(44, 44, 44, 0.4);
+    background: #2C2C2C !important;
+    color: #ffffff !important;
+}
+
+/* 5. Icon Styling */
+.magic-icon {
+    color: #C6B7E2 !important; /* Lilac Bloom */
+    font-size: 4rem;
+    margin-bottom: 20px;
+    text-shadow: none !important;
+}
+.magic-sparkles {
+    color: #9ED4CC !important; /* Mist Teal */
+}
+
+
+/* 21. Latest Release & Footer Redesign (Soft Moon Theme) */
+/* 1. Product Cards (Latest Release) */
+.product-card {
+    background: #F2EEF2 !important; /* Pearl Gray */
+    border: 1px solid #C6B7E2 !important; /* Lilac Bloom */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05) !important;
+    color: #2C2C2C !important;
+}
+.product-info h3 {
+    color: #2C2C2C !important; /* Charcoal Ink Title */
+}
+.product-badge {
+    background: #E7B6C8 !important; /* Dusty Rose */
+    color: #2C2C2C !important;
+    font-weight: 700;
+}
+.btn-buy {
+    background: #2C2C2C !important; /* Charcoal Ink Main Button */
+    color: #FAF7F5 !important; /* Soft Moon White */
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(44, 44, 44, 0.2);
+}
+.btn-buy:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(44, 44, 44, 0.3);
+    background: #000000 !important;
+}
+
+/* 2. Footer Redesign */
+footer {
+    background: #FAF7F5 !important; /* Soft Moon White Background */
+    color: #2C2C2C !important; /* Charcoal Ink Text */
+    border-top: 1px solid #C6B7E2 !important;
+}
+footer h4 {
+    color: #2C2C2C !important;
+    font-weight: 800;
+    text-shadow: none !important;
+}
+footer a {
+    color: #2C2C2C !important;
+    font-weight: 600;
+}
+footer a:hover {
+    color: #C6B7E2 !important; /* Lilac Bloom Hover */
+}
+.footer-tagline {
+    color: #7A7A7A !important; /* Fog Gray Quote */
+}
+.social-icon {
+    background: transparent !important;
+    border: 1px solid #2C2C2C !important;
+    color: #2C2C2C !important;
+}
+.social-icon:hover {
+    background: #2C2C2C !important;
+    color: #ffffff !important;
+}
+.bottom-bar p {
+    color: #7A7A7A !important; /* Fog Gray Copyright */
+}
+
+
+/* 22. Shop Page Redesign (Boutique Bookshelf) */
+.badge-preorder {
+    background: #E7B6C8 !important; /* Dusty Rose */
+    color: #2C2C2C !important;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+.badge-digital {
+    background: #9ED4CC !important; /* Mist Teal */
+    color: #2C2C2C !important;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+.shop-price {
+    color: #2C2C2C !important;
+    font-weight: 800 !important;
+    font-size: 1.1rem;
+}
+.text-status-open {
+    color: #9ED4CC !important; /* Mist Teal */
+    font-weight: 700;
+}
+.btn-shop-action {
+    background: #2C2C2C !important; /* Charcoal Ink */
+    color: #FAF7F5 !important;
+    width: 100%;
+    text-align: center;
+    border: none !important;
+    border-radius: 30px;
+    padding: 12px 0;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(44, 44, 44, 0.2);
+    transition: transform 0.3s ease;
+}
+.btn-shop-action:hover {
+    background: #000000 !important;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(44, 44, 44, 0.3);
+}
+
+
+/* PRODUCT PAGE LAYOUT FIX */
+.product-detail-container {
+    display: flex;
+    flex-direction: column; /* Mobile first default */
+    gap: 40px;
+    margin-top: 40px;
+    margin-bottom: 80px;
+}
+
+@media (min-width: 992px) {
+    .product-detail-container {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 60px;
+    }
+
+    .product-gallery {
+        flex: 1;
+        width: 50%; /* limit width to 50% on desktop */
+        position: sticky;
+        top: 120px; /* Optional: Sticky image while scrolling details */
+    }
+
+    .product-info {
+        flex: 1;
+        width: 50%;
+    }
+}
+
+/* Ensure image respects the new container */
+#main-image {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: contain; 
+}
+
