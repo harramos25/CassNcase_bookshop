@@ -459,15 +459,18 @@ header.scrolled {
 .hero-content {
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 22px;
+    /* tighter = premium */
     align-items: center;
     text-align: center;
-    padding-bottom: 60px;
+    padding-top: 100px;
+    /* safe under fixed header */
+    padding-bottom: 40px;
     position: relative;
     z-index: 2;
 }
 
-/* ✅ Image first on mobile */
+/* MOBILE: image first */
 .hero-image {
     order: 1;
     width: 100%;
@@ -559,10 +562,11 @@ header.scrolled {
     }
 }
 
-/* Make the hero image not too huge on phones */
+/* Make hero image not overpowering on mobile */
 .hero-image img {
     max-height: 280px;
     width: auto;
+    margin: 0 auto;
     max-width: 85%;
     border-radius: 0;
     box-shadow: none;
@@ -574,17 +578,18 @@ header.scrolled {
 @media (min-width: 992px) {
     .hero-image img {
         max-height: 600px;
+        margin: 0;
         max-width: 100%;
     }
 }
 
-/* Keep the blob from looking weird on small screens */
+/* Blob/background: smaller on mobile */
 .hero-image::before {
     content: '';
     position: absolute;
     width: 360px;
     height: 360px;
-    opacity: 0.55;
+    opacity: 0.75;
     background: radial-gradient(circle at 30% 30%, rgba(181, 168, 209, 0.6), rgba(181, 168, 209, 0.2));
     border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
     z-index: 0;
@@ -595,25 +600,26 @@ header.scrolled {
     .hero-image::before {
         width: 500px;
         height: 500px;
-        opacity: 1;
     }
 }
 
 /* Quick Reality Check: Mobile Height Fix */
+/* Typography + spacing on small screens */
 @media (max-width: 480px) {
-    .hero-section {
-        min-height: auto;
-        padding-top: 90px !important;
-        padding-bottom: 40px;
-    }
-
     .hero-text h1 {
         font-size: 2.2rem;
+        /* stop looking “too big” */
+        line-height: 1.05;
     }
 
     .hero-text .hero-subtitle {
         font-size: 0.95rem;
-        margin-bottom: 24px;
+        margin-bottom: 22px;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 260px;
     }
 }
 
@@ -2245,34 +2251,35 @@ input:checked+.slider:before {
    PRODUCT PAGE LAYOUT FIX
    ========================= */
 
+/* =========================
+   PRODUCT DETAIL LAYOUT (PREMIUM + CONTROLLED)
+   ========================= */
+
 .product-detail-container {
     display: grid;
-    grid-template-columns: minmax(280px, 520px) 1fr;
-    gap: 40px;
+    grid-template-columns: minmax(0, 520px) minmax(0, 1fr);
+    gap: 50px;
     align-items: start;
-    margin-top: 30px;
-    margin-bottom: 80px;
+    padding-top: 40px;
+    padding-bottom: 80px;
+    margin-top: 0;
+    /* Controlled by padding now */
+    margin-bottom: 0;
 }
 
-/* Left gallery should not explode */
-.product-gallery {
+/* Keep gallery from stretching too wide */
+.product-detail-container .product-gallery {
     width: 100%;
-    max-width: 520px;
 }
 
-/* Main image sizing: responsive + not too tall */
-#main-image {
-    width: 100%;
-    height: auto;
-    max-height: clamp(320px, 55vh, 520px);
-    /* ✅ key fix */
+/* Image cap: less tall = less “giant” */
+.product-detail-container #main-image {
+    max-height: 520px;
+    /* from 600 */
     object-fit: contain;
-    border-radius: 12px;
-    box-shadow: 0px 15px 45px rgba(0, 0, 0, 0.45);
-    transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-/* Make carousel buttons not go outside too far */
+/* Bring arrows inside image so it doesn't look “wide” */
 .carousel-btn.prev {
     left: 10px;
 }
@@ -2281,148 +2288,97 @@ input:checked+.slider:before {
     right: 10px;
 }
 
-.carousel-btn {
-    opacity: 0;
-}
-
-.gallery-main:hover .carousel-btn {
-    opacity: 1;
-}
-
-/* Make right side breathe */
-.product-info {
-    width: 100%;
-    min-width: 0;
-}
-
-/* Title is too big on desktop, tame it */
+/* Make info column feel tighter */
 .product-info h1 {
-    font-size: clamp(1.8rem, 2.6vw, 2.6rem);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
     line-height: 1.15;
-    margin-bottom: 10px;
 }
 
-/* FORMAT OPTIONS REDUCTION */
-.format-option.card-style {
-    min-height: 130px;
-    padding: 18px 14px;
-}
-
-.format-option.card-style .format-icon {
-    font-size: 1.6rem;
-    margin-bottom: 10px;
-}
-
-.format-option.card-style .format-price {
-    margin-top: 10px;
-    font-size: 1.05rem;
-}
-
-/* =========================
-   PRODUCT PAGE - MOBILE
-   ========================= */
-
+/* Formats: if 2 cards too wide, wrap nicely */
 @media (max-width: 992px) {
     .product-detail-container {
         grid-template-columns: 1fr;
-        gap: 25px;
+        gap: 28px;
+        padding-top: 20px;
     }
 
-    .product-gallery {
-        max-width: 100%;
-    }
-
-    #main-image {
-        max-height: clamp(260px, 45vh, 420px);
+    .product-detail-container #main-image {
+        max-height: 420px;
     }
 
     .format-options-container {
         flex-direction: column;
     }
-
-    .format-option.card-style {
-        min-height: 110px;
-        flex-direction: row;
-        justify-content: space-between;
-        text-align: left;
-        padding: 14px 16px;
-    }
-
-    .format-option.card-style .format-icon {
-        margin: 0;
-    }
-
-    .format-option.card-style .format-details {
-        flex: 1;
-        margin-left: 12px;
-    }
-
-    .format-option.card-style .format-price {
-        margin: 0;
-    }
 }
 
 @media (max-width: 480px) {
-    .product-info h1 {
-        font-size: 1.6rem;
-    }
-
-    .btn.btn-primary {
-        font-size: 1rem !important;
-        padding: 13px !important;
+    .product-detail-container #main-image {
+        max-height: 340px;
     }
 
     .carousel-btn {
         width: 36px;
         height: 36px;
-        font-size: 1rem;
     }
 }
 
 /* ===============================
    LATEST RELEASE SECTION FIX
    =============================== */
-.latest-release {
-    padding: clamp(50px, 7vw, 80px) 20px;
-    /* less tall, responsive */
-    max-width: 1050px;
-    /* smaller than 1200 */
-    margin: 0 auto;
-}
-
-/* tighten grid spacing */
+/* ===============================
+   LATEST RELEASE SECTION FIX
+   =============================== */
+/* Make the grid feel premium: tighter, balanced */
 .latest-release .product-grid {
-    gap: clamp(20px, 3vw, 40px);
-    margin-top: 30px;
-    margin-bottom: 40px;
+    gap: 32px;
+    /* from 60px -> tighter */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* Slightly smaller minmax */
 }
 
-/* make cards feel less “billboard” */
+/* Reduce the breakout image size a bit (desktop) */
+.latest-release .card-image {
+    height: 300px;
+    /* from 350px */
+    margin-top: -35px;
+    /* from -50px */
+    margin-bottom: 20px;
+}
+
+/* Make cards less tall */
 .latest-release .product-card {
-    padding: 0 22px 22px 22px;
+    padding: 0 26px 26px 26px;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 18px;
 }
 
-/* reduce image height + breakout */
-.latest-release .card-image {
-    height: clamp(220px, 28vw, 300px);
-    margin-top: -25px;
+.latest-release .product-card:hover {
+    border-color: rgba(181, 168, 209, 0.35);
 }
 
-/* keep image clean */
-.latest-release .card-image img {
-    object-fit: contain;
-    /* cover looks too aggressive for book mockups */
-}
-
-@media (max-width: 768px) {
-    .latest-release {
-        padding: 45px 16px;
+/* Tablet: stack nicely + smaller images */
+@media (max-width: 992px) {
+    .latest-release .product-grid {
+        grid-template-columns: 1fr;
+        gap: 26px;
     }
 
     .latest-release .card-image {
-        height: 240px;
-        margin-top: -18px;
+        height: 260px;
+        margin-top: -28px;
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    .latest-release .card-image {
+        height: 230px;
+        margin-top: -22px;
+    }
+
+    .latest-release .product-card {
+        padding: 0 20px 22px 20px;
+        border-radius: 18px;
     }
 }
