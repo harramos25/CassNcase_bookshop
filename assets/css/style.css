@@ -2538,22 +2538,26 @@ input:checked+.slider:before {
 
 @media (min-width: 992px) {
     .hero-section {
-        padding-top: 120px;
+        padding-top: 130px;
+        /* Compense for negative margin + header */
         padding-bottom: 60px;
-        /* prevents bottom crop */
+        margin-top: -90px;
+        /* Pull up to cover body padding gap */
     }
 
     .hero-content {
-        min-height: calc(100vh - 180px);
+        min-height: calc(100vh - 120px);
         /* give space for header + padding */
         align-items: center;
+        max-width: 1150px;
+        /* Tighter width to fix "too left" text */
     }
 
     .hero-image {
         align-items: center;
         /* vertical center */
-        justify-content: flex-end;
-        /* keep right alignment */
+        justify-content: center;
+        /* Fix "blob floating" -> Center image over blob */
         padding-bottom: 20px;
         /* breathing room */
     }
@@ -2568,11 +2572,12 @@ input:checked+.slider:before {
 
     /* Blob: make it feel premium (smaller + behind) */
     .hero-image::before {
-        width: clamp(420px, 38vw, 620px);
-        height: clamp(420px, 38vw, 620px);
+        width: clamp(400px, 35vw, 600px);
+        height: clamp(400px, 35vw, 600px);
 
-        left: 72%;
-        top: 52%;
+        left: 50%;
+        /* Center relative to container */
+        top: 50%;
         translate: -50% -50%;
 
         opacity: 0.55;
