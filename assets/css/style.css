@@ -449,9 +449,9 @@ header.scrolled {
 /* HERO SECTION: wag full 100vh lagi, kasi sobrang laki on desktop */
 .hero-section {
     min-height: calc(100vh - var(--header-h));
-    padding-top: var(--header-h);
-    margin-top: 0;
-    /* alisin yung negative margin */
+    padding-top: 140px;
+    margin-top: -90px;
+    /* Pull up to cover body padding gap */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2462,72 +2462,7 @@ input:checked+.slider:before {
    Paste at the very bottom of style.css
 =================================== */
 
-/* Desktop/Laptop */
-@media (min-width: 992px) {
-    .hero-section {
-        padding-top: 120px;
-        /* header spacing */
-    }
-
-    .hero-content {
-        width: 100%;
-        min-height: calc(100vh - 120px);
-        display: flex;
-        justify-content: center;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: 80px;
-        text-align: left;
-        padding-bottom: 0;
-
-        /* Make hero feel wider than normal sections */
-        max-width: 1280px;
-        margin: 0 auto;
-    }
-
-    .hero-text {
-        width: auto;
-        flex: 0 1 520px;
-        /* controlled width = premium */
-        max-width: 520px;
-    }
-
-    .hero-image {
-        width: auto;
-        flex: 1 1 auto;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        position: relative;
-        overflow: visible;
-        /* allow blob to breathe */
-    }
-
-    /* Make the character bigger on desktop */
-    .hero-image img {
-        width: clamp(360px, 38vw, 560px);
-        max-height: none;
-        /* remove the "small" feel */
-        height: auto;
-        z-index: 2;
-    }
-
-    /* Re-anchor the blob behind the character */
-    .hero-image::before {
-        width: clamp(520px, 48vw, 780px);
-        height: clamp(520px, 48vw, 780px);
-
-        top: 50%;
-        left: 65%;
-
-        /* IMPORTANT: Use translate property so animation transform still works */
-        translate: -50% -50%;
-
-        z-index: 1;
-        opacity: 0.95;
-    }
-}
+/* [Removed Duplicate Hero Block 1] */
 
 /* ================================
    HERO POLISH: stop cropping + blob scale
@@ -2584,7 +2519,6 @@ input:checked+.slider:before {
     }
 }
 
-/* EXTRA PREMIUM DEPTH (Optional) */
 @media (min-width: 992px) {
     .hero-section::after {
         content: "";
@@ -2604,7 +2538,6 @@ input:checked+.slider:before {
 
 /* ================================
    FINAL PREMIUM CHECKOUT REFINEMENT
-   (Designer's Fix: Structure, Spacing, Hierarchy)
 =================================== */
 
 :root {
@@ -2620,7 +2553,6 @@ header#main-header {
     align-items: center;
 }
 
-/* FIX: Navbar Collision - Force container to fill width so space-between works */
 header#main-header .container {
     width: 100%;
 }
@@ -2629,10 +2561,8 @@ header#main-header .container {
     /* Padding should only offset header + small spacing */
     padding-top: calc(var(--header-h) + 36px) !important;
     max-width: 1240px !important;
-    /* Wider for balanced columns */
 }
 
-/* Override .section-title to remove giant margins */
 .checkout-container .section-title {
     margin-top: 0 !important;
     margin-bottom: 28px !important;
