@@ -570,10 +570,10 @@ header.scrolled {
     box-shadow: none;
     border: none;
     z-index: 2;
-    animation: float 6s ease-in-out infinite;
+    animation: gentleFloat 8s ease-in-out infinite;
 }
 
-/* BLOB: make it smaller + centered behind image */
+/* ORB GLOW: Symmetrical, Editorial, Minimal */
 .hero-image::before {
     content: '';
     position: absolute;
@@ -582,13 +582,14 @@ header.scrolled {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    opacity: 0.55;
-    /* less loud = premium */
-    filter: blur(0.2px);
-    background: radial-gradient(circle at 30% 30%, rgba(181, 168, 209, 0.6), rgba(181, 168, 209, 0.2));
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    border-radius: 50%;
+    /* Perfect Circle */
+    background: radial-gradient(circle, rgba(181, 168, 209, 0.35) 0%, rgba(85, 60, 100, 0.1) 60%, transparent 70%);
+    filter: blur(20px);
+    /* Soft glow */
     z-index: 0;
-    animation: blobMorph 10s linear infinite alternate;
+    opacity: 0.8;
+    animation: orbPulse 8s ease-in-out infinite alternate;
 }
 
 /* Quick Reality Check: Mobile Height Fix */
@@ -611,19 +612,19 @@ header.scrolled {
     }
 }
 
-@keyframes blobMorph {
+@keyframes orbPulse {
     0% {
-        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-        transform: scale(1);
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.8;
     }
 
     100% {
-        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-        transform: scale(1.1);
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.5;
     }
 }
 
-@keyframes float {
+@keyframes gentleFloat {
 
     0%,
     100% {
@@ -631,7 +632,7 @@ header.scrolled {
     }
 
     50% {
-        transform: translateY(-20px);
+        transform: translateY(-12px);
     }
 }
 
