@@ -2294,6 +2294,33 @@ input:checked+.slider:before {
     line-height: 1.15;
 }
 
+/* =========================
+   PRODUCT PAGE: STICKY GALLERY (DESKTOP)
+   ========================= */
+
+@media (min-width: 992px) {
+    .product-detail-container .product-gallery {
+        position: sticky;
+        top: 140px;
+        /* Adjust based on header height */
+        align-self: start;
+        max-height: calc(100vh - 140px);
+        overflow: hidden;
+        /* keeps it clean */
+        will-change: transform;
+        transition: transform 0.3s ease;
+    }
+
+    .product-detail-container .product-gallery:hover {
+        transform: translateY(-2px);
+    }
+
+    .product-detail-container #main-image {
+        max-height: min(520px, calc(100vh - 220px));
+        object-fit: contain;
+    }
+}
+
 /* Formats: if 2 cards too wide, wrap nicely */
 @media (max-width: 992px) {
     .product-detail-container {
