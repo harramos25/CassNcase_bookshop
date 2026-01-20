@@ -2603,3 +2603,34 @@ input:checked+.slider:before {
         z-index: 2;
     }
 }
+
+/* ================================
+   CHECKOUT PAGE SPACING FIX
+   (Reduce gap + Premium Title)
+=================================== */
+.checkout-container {
+    padding-top: 40px !important;
+    /* was 120px */
+}
+
+/* Make the checkout title not behave like a big section title */
+.checkout-container .section-title {
+    margin: 10px 0 18px !important;
+    /* was 60px 0 40px */
+    padding-bottom: 14px;
+    text-align: left !important;
+    /* Premium Page Header look */
+    font-size: clamp(2rem, 2.4vw, 3rem);
+}
+
+.checkout-container .section-title::after {
+    left: 0 !important;
+    transform: none !important;
+    width: 60px;
+    opacity: 0.8;
+}
+
+/* Optional: bring the entire grid up a bit */
+.checkout-grid {
+    margin-top: 10px !important;
+}
