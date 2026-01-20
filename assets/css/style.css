@@ -2378,3 +2378,51 @@ input:checked+.slider:before {
         font-size: 1rem;
     }
 }
+
+/* ===============================
+   LATEST RELEASE SECTION FIX
+   =============================== */
+.latest-release {
+    padding: clamp(50px, 7vw, 80px) 20px;
+    /* less tall, responsive */
+    max-width: 1050px;
+    /* smaller than 1200 */
+    margin: 0 auto;
+}
+
+/* tighten grid spacing */
+.latest-release .product-grid {
+    gap: clamp(20px, 3vw, 40px);
+    margin-top: 30px;
+    margin-bottom: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* make cards feel less “billboard” */
+.latest-release .product-card {
+    padding: 0 22px 22px 22px;
+    border-radius: 18px;
+}
+
+/* reduce image height + breakout */
+.latest-release .card-image {
+    height: clamp(220px, 28vw, 300px);
+    margin-top: -25px;
+}
+
+/* keep image clean */
+.latest-release .card-image img {
+    object-fit: contain;
+    /* cover looks too aggressive for book mockups */
+}
+
+@media (max-width: 768px) {
+    .latest-release {
+        padding: 45px 16px;
+    }
+
+    .latest-release .card-image {
+        height: 240px;
+        margin-top: -18px;
+    }
+}
