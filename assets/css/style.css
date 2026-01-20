@@ -441,31 +441,39 @@ header.scrolled {
 
 /* HERO SECTION (index) */
 /* HERO SECTION (index) */
+/* Header height variable para consistent */
+:root {
+    --header-h: 90px;
+}
+
+/* HERO SECTION: wag full 100vh lagi, kasi sobrang laki on desktop */
 .hero-section {
-    min-height: 100vh;
+    min-height: calc(100vh - var(--header-h));
+    padding-top: var(--header-h);
+    margin-top: 0;
+    /* alisin yung negative margin */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 100px;
-    /* Internal padding for content centering */
-    margin-top: -90px;
-    /* Pull back up behind header */
     background: linear-gradient(135deg, var(--plum-midnight) 0%, var(--plum-darker) 100%);
     position: relative;
     overflow: hidden;
 }
 
 /* STACK Strategy (Mobile First) */
+/* HERO CONTENT: remove extra top padding, make it tighter */
 .hero-content {
+    background: transparent;
     display: flex;
     flex-direction: column;
     gap: 22px;
-    /* tighter = premium */
     align-items: center;
     text-align: center;
-    padding-top: 100px;
-    /* safe under fixed header */
+    padding-top: 0;
     padding-bottom: 40px;
+    max-width: 1100px;
+    /* tighter container = premium */
+    margin: 0 auto;
     position: relative;
     z-index: 2;
 }
@@ -497,22 +505,27 @@ header.scrolled {
 }
 
 /* DESKTOP SPLIT */
+/* DESKTOP: make the split feel curated */
 @media (min-width: 992px) {
     .hero-content {
         flex-direction: row;
         text-align: left;
-        gap: 60px;
+        align-items: center;
+        gap: 48px;
+        /* from 60 -> tighter */
         padding-bottom: 0;
     }
 
     .hero-text {
+        width: 52%;
         order: 1;
-        width: 50%;
     }
 
     .hero-image {
+        width: 48%;
         order: 2;
-        width: 50%;
+        justify-content: flex-end;
+        /* image sits nicely */
     }
 
     .hero-buttons {
@@ -533,41 +546,26 @@ header.scrolled {
     animation: fadeUp 1s ease-out 0.2s forwards;
 }
 
+/* HERO TITLE: reduce “too big” feel on desktop */
 @media (min-width: 992px) {
     .hero-text h1 {
-        font-size: 4rem;
+        font-size: clamp(2.8rem, 3.2vw + 1rem, 4rem);
+        max-width: 14ch;
+        /* prevents ultra-wide headline */
     }
 }
 
+/* Subtitle: cap width para di mukhang stretched */
 .hero-text .hero-subtitle {
-    font-size: 1.15rem;
-    color: var(--sage-soft);
-    margin-bottom: 40px;
-    font-style: normal;
-    font-weight: 300;
-    opacity: 0;
-    animation: fadeUp 1s ease-out 0.4s forwards;
+    max-width: 46ch;
 }
 
-.hero-text .hero-subtitle {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-@media (min-width: 992px) {
-    .hero-text .hero-subtitle {
-        margin-left: 0;
-        margin-right: 0;
-        max-width: 90%;
-    }
-}
-
-/* Make hero image not overpowering on mobile */
+/* IMAGE: control size so it won’t eat the page */
 .hero-image img {
-    max-height: 280px;
-    width: auto;
-    margin: 0 auto;
-    max-width: 85%;
+    max-height: clamp(260px, 42vh, 520px);
+    max-width: 420px;
+    width: 100%;
+    object-fit: contain;
     border-radius: 0;
     box-shadow: none;
     border: none;
@@ -575,32 +573,22 @@ header.scrolled {
     animation: float 6s ease-in-out infinite;
 }
 
-@media (min-width: 992px) {
-    .hero-image img {
-        max-height: 600px;
-        margin: 0;
-        max-width: 100%;
-    }
-}
-
-/* Blob/background: smaller on mobile */
+/* BLOB: make it smaller + centered behind image */
 .hero-image::before {
     content: '';
     position: absolute;
-    width: 360px;
-    height: 360px;
-    opacity: 0.75;
+    width: clamp(280px, 40vw, 460px);
+    height: clamp(280px, 40vw, 460px);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.55;
+    /* less loud = premium */
+    filter: blur(0.2px);
     background: radial-gradient(circle at 30% 30%, rgba(181, 168, 209, 0.6), rgba(181, 168, 209, 0.2));
     border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
     z-index: 0;
     animation: blobMorph 10s linear infinite alternate;
-}
-
-@media (min-width: 992px) {
-    .hero-image::before {
-        width: 500px;
-        height: 500px;
-    }
 }
 
 /* Quick Reality Check: Mobile Height Fix */
@@ -2298,6 +2286,12 @@ input:checked+.slider:before {
    PRODUCT PAGE: STICKY GALLERY (DESKTOP)
    ========================= */
 
+.product-detail-container {
+    align-items: start;
+    /* important */
+    overflow: visible !important;
+}
+
 @media (min-width: 992px) {
     .product-detail-container .product-gallery {
         position: sticky;
@@ -2305,8 +2299,9 @@ input:checked+.slider:before {
         /* Adjust based on header height */
         align-self: start;
         max-height: calc(100vh - 140px);
-        overflow: hidden;
-        /* keeps it clean */
+        overflow: visible;
+        /* allow shadows + feel natural */
+        height: fit-content;
         will-change: transform;
         transition: transform 0.3s ease;
     }
@@ -2352,23 +2347,30 @@ input:checked+.slider:before {
 /* ===============================
    LATEST RELEASE SECTION FIX
    =============================== */
-/* ===============================
-   LATEST RELEASE SECTION FIX
-   =============================== */
+.latest-release {
+    padding: 70px 20px;
+    /* instead of 100px */
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.latest-release .section-title {
+    margin: 20px 0 30px;
+}
+
 /* Make the grid feel premium: tighter, balanced */
 .latest-release .product-grid {
     gap: 32px;
     /* from 60px -> tighter */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    /* Slightly smaller minmax */
+    align-items: stretch;
 }
 
 /* Reduce the breakout image size a bit (desktop) */
 .latest-release .card-image {
-    height: 300px;
-    /* from 350px */
-    margin-top: -35px;
-    /* from -50px */
+    height: 260px;
+    /* reduce further */
+    margin-top: -30px;
     margin-bottom: 20px;
 }
 
@@ -2407,5 +2409,14 @@ input:checked+.slider:before {
     .latest-release .product-card {
         padding: 0 20px 22px 20px;
         border-radius: 18px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .latest-release .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 460px));
+        /* controlled 2 cards */
+        justify-content: center;
+        /* center them */
     }
 }
