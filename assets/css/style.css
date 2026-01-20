@@ -2795,23 +2795,24 @@ header#main-header .container {
     }
 }
 
-/* Checkout title vertical centering fix */
-.checkout-container .section-title {
-    margin-top: -24px;
-    /* pull it upward */
-    margin-bottom: 24px;
-    /* keep breathing room below */
+/* Checkout title vertical centering fix - REDUX */
+.checkout-container {
+    padding-top: 40px !important;
+    /* Drastic reduction: Body (90px) + 40px = 130px total from top */
 }
 
-/* Mobile refinement for perfect centering */
+.checkout-container .section-title {
+    margin-top: 0 !important;
+    /* Kill the default 60px margin */
+    margin-bottom: 30px;
+    /* Keep separation from content */
+}
+
+/* Mobile refinement */
 @media (max-width: 480px) {
     .checkout-container {
-        padding-top: calc(var(--header-h) + 24px) !important;
-    }
-
-    .checkout-container .section-title {
-        margin-top: -16px;
-        margin-bottom: 20px;
+        padding-top: 20px !important;
+        /* Even tighter on mobile */
     }
 }
 
