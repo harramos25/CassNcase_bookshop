@@ -2623,9 +2623,14 @@ header#main-header {
     align-items: center;
 }
 
+/* FIX: Navbar Collision - Force container to fill width so space-between works */
+header#main-header .container {
+    width: 100%;
+}
+
 .checkout-container {
     /* Padding should only offset header + small spacing */
-    padding-top: calc(var(--header-h) + 32px) !important;
+    padding-top: calc(var(--header-h) + 52px) !important;
     max-width: 1240px !important;
     /* Wider for balanced columns */
 }
@@ -2635,13 +2640,14 @@ header#main-header {
     margin-top: 0 !important;
     margin-bottom: 28px !important;
     padding-bottom: 14px;
-    text-align: left !important;
+    text-align: center !important;
+    /* User requested CENTER */
     font-size: clamp(2rem, 2.4vw, 3rem);
 }
 
 .checkout-container .section-title::after {
-    left: 0 !important;
-    transform: none !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
     width: 60px;
     opacity: 0.8;
 }
