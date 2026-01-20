@@ -2794,3 +2794,28 @@ header#main-header .container {
         font-size: 1.05rem;
     }
 }
+
+/* Checkout title vertical centering fix */
+.checkout-container .section-title {
+    margin-top: -24px;
+    /* pull it upward */
+    margin-bottom: 24px;
+    /* keep breathing room below */
+}
+
+/* Mobile refinement for perfect centering */
+@media (max-width: 480px) {
+    .checkout-container {
+        padding-top: calc(var(--header-h) + 24px) !important;
+    }
+
+    .checkout-container .section-title {
+        margin-top: -16px;
+        margin-bottom: 20px;
+    }
+}
+
+/* Polish: Adjust underline spacing */
+.checkout-container .section-title::after {
+    margin-top: 10px;
+}
