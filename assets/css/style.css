@@ -2627,7 +2627,7 @@ header#main-header .container {
 
 .checkout-container {
     /* Padding should only offset header + small spacing */
-    padding-top: calc(var(--header-h) + 24px) !important;
+    padding-top: calc(var(--header-h) + 36px) !important;
     max-width: 1240px !important;
     /* Wider for balanced columns */
 }
@@ -2649,9 +2649,7 @@ header#main-header .container {
     opacity: 0.8;
 }
 
-/* 2. Grid Proportion & Spacing */
-/* 2. Grid Proportion & Spacing */
-/* ✅ Checkout: Desktop-only grid */
+/* Checkout: Desktop-only grid */
 @media (min-width: 992px) {
     .checkout-grid {
         display: grid;
