@@ -538,13 +538,15 @@ header.scrolled {
     .hero-text {
         width: 52%;
         order: 1;
+        text-align: left;
+        /* Force left align */
     }
 
     .hero-image {
         width: 48%;
         order: 2;
-        justify-content: flex-end;
-        /* image sits nicely */
+        justify-content: center;
+        /* Center image so it aligns with centered blob */
     }
 
     .hero-buttons {
