@@ -2604,22 +2604,38 @@ input:checked+.slider:before {
     }
 }
 
+
 /* ================================
-   CHECKOUT PAGE SPACING FIX
-   (Reduce gap + Premium Title)
+   FINAL PREMIUM CHECKOUT REFINEMENT
+   (Designer's Fix: Structure, Spacing, Hierarchy)
 =================================== */
-.checkout-container {
-    padding-top: 40px !important;
-    /* was 120px */
+
+:root {
+    --header-h: 78px;
+    /* Defined variable for consistent offset */
 }
 
-/* Make the checkout title not behave like a big section title */
+/* 1. Header & Offset */
+header#main-header {
+    height: var(--header-h);
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.checkout-container {
+    /* Padding should only offset header + small spacing */
+    padding-top: calc(var(--header-h) + 32px) !important;
+    max-width: 1240px !important;
+    /* Wider for balanced columns */
+}
+
+/* Override .section-title to remove giant margins */
 .checkout-container .section-title {
-    margin: 10px 0 18px !important;
-    /* was 60px 0 40px */
+    margin-top: 0 !important;
+    margin-bottom: 28px !important;
     padding-bottom: 14px;
     text-align: left !important;
-    /* Premium Page Header look */
     font-size: clamp(2rem, 2.4vw, 3rem);
 }
 
@@ -2630,7 +2646,65 @@ input:checked+.slider:before {
     opacity: 0.8;
 }
 
-/* Optional: bring the entire grid up a bit */
+/* 2. Grid Proportion & Spacing */
 .checkout-grid {
-    margin-top: 10px !important;
+    display: grid;
+    grid-template-columns: 1.15fr 0.65fr;
+    /* Balanced ratio */
+    gap: 48px;
+    align-items: start;
+    margin-top: 24px !important;
+}
+
+/* 3. Upgrade "Foggy" Main Panel */
+.checkout-main {
+    background: rgba(20, 14, 28, 0.55);
+    /* Deeper, more solid */
+    border: 1px solid rgba(181, 168, 209, 0.14);
+    border-radius: 22px;
+    padding: 34px;
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Tighten Rhythm */
+.checkout-section {
+    margin-bottom: 34px;
+}
+
+.section-subtitle {
+    margin-bottom: 16px;
+}
+
+.form-grid {
+    gap: 16px;
+    margin-bottom: 14px;
+}
+
+/* 4. Anchor Sidebar & Button */
+.checkout-sidebar {
+    position: sticky;
+    top: calc(var(--header-h) + 24px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Style Button to attach to receipt */
+.checkout-sidebar #submit-btn {
+    margin-top: 0 !important;
+    padding: 16px 18px;
+    border-radius: 16px;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    box-shadow: 0 18px 45px rgba(122, 108, 157, 0.35);
+}
+
+/* Premium Divider before Button */
+.checkout-sidebar::before {
+    content: "";
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(181, 168, 209, 0.25), transparent);
+    margin-bottom: 6px;
 }
