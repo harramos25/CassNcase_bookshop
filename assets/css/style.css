@@ -2456,3 +2456,78 @@ input:checked+.slider:before {
         /* center them */
     }
 }
+
+/* ================================
+   HERO DESKTOP FIX (PREMIUM LAYOUT)
+   Paste at the very bottom of style.css
+=================================== */
+
+.hero-section {
+    padding-top: 120px;
+    /* header spacing */
+}
+
+.hero-content {
+    width: 100%;
+    min-height: calc(100vh - 120px);
+    display: flex;
+    justify-content: center;
+}
+
+/* Desktop/Laptop */
+@media (min-width: 992px) {
+    .hero-content {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 80px;
+        text-align: left;
+        padding-bottom: 0;
+
+        /* Make hero feel wider than normal sections */
+        max-width: 1280px;
+        margin: 0 auto;
+    }
+
+    .hero-text {
+        width: auto;
+        flex: 0 1 520px;
+        /* controlled width = premium */
+        max-width: 520px;
+    }
+
+    .hero-image {
+        width: auto;
+        flex: 1 1 auto;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        position: relative;
+        overflow: visible;
+        /* allow blob to breathe */
+    }
+
+    /* Make the character bigger on desktop */
+    .hero-image img {
+        width: clamp(360px, 38vw, 560px);
+        max-height: none;
+        /* remove the "small" feel */
+        height: auto;
+        z-index: 2;
+    }
+
+    /* Re-anchor the blob behind the character */
+    .hero-image::before {
+        width: clamp(520px, 48vw, 780px);
+        height: clamp(520px, 48vw, 780px);
+
+        top: 50%;
+        left: 65%;
+
+        /* IMPORTANT: Use translate property so animation transform still works */
+        translate: -50% -50%;
+
+        z-index: 1;
+        opacity: 0.95;
+    }
+}
