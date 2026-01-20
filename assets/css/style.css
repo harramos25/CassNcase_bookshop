@@ -459,28 +459,29 @@ header.scrolled {
 .hero-content {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 28px;
     align-items: center;
-    position: relative;
-    z-index: 2;
     text-align: center;
     padding-bottom: 60px;
+    position: relative;
+    z-index: 2;
+}
+
+/* ✅ Image first on mobile */
+.hero-image {
+    order: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    opacity: 0;
+    /* Preserve Vibe */
+    animation: slideInRight 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s forwards;
 }
 
 .hero-text {
-    width: 100%;
-    order: 1;
-}
-
-.hero-image {
-    width: 100%;
     order: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    opacity: 0;
-    animation: slideInRight 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s forwards;
+    width: 100%;
 }
 
 .hero-buttons {
@@ -492,7 +493,7 @@ header.scrolled {
     animation: fadeUp 1s ease-out 0.6s forwards;
 }
 
-/* DESKTOP Strategy (Split at 992px) */
+/* DESKTOP SPLIT */
 @media (min-width: 992px) {
     .hero-content {
         flex-direction: row;
@@ -502,13 +503,13 @@ header.scrolled {
     }
 
     .hero-text {
-        width: 50%;
         order: 1;
+        width: 50%;
     }
 
     .hero-image {
-        width: 50%;
         order: 2;
+        width: 50%;
     }
 
     .hero-buttons {
@@ -558,11 +559,14 @@ header.scrolled {
     }
 }
 
+/* Make the hero image not too huge on phones */
 .hero-image img {
+    max-height: 280px;
+    width: auto;
+    max-width: 85%;
     border-radius: 0;
     box-shadow: none;
     border: none;
-    max-height: 400px;
     z-index: 2;
     animation: float 6s ease-in-out infinite;
 }
@@ -570,19 +574,47 @@ header.scrolled {
 @media (min-width: 992px) {
     .hero-image img {
         max-height: 600px;
+        max-width: 100%;
     }
 }
 
-/* BLOB BACKGROUND */
+/* Keep the blob from looking weird on small screens */
 .hero-image::before {
     content: '';
     position: absolute;
-    width: 500px;
-    height: 500px;
+    width: 360px;
+    height: 360px;
+    opacity: 0.55;
     background: radial-gradient(circle at 30% 30%, rgba(181, 168, 209, 0.6), rgba(181, 168, 209, 0.2));
     border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
     z-index: 0;
     animation: blobMorph 10s linear infinite alternate;
+}
+
+@media (min-width: 992px) {
+    .hero-image::before {
+        width: 500px;
+        height: 500px;
+        opacity: 1;
+    }
+}
+
+/* Quick Reality Check: Mobile Height Fix */
+@media (max-width: 480px) {
+    .hero-section {
+        min-height: auto;
+        padding-top: 90px !important;
+        padding-bottom: 40px;
+    }
+
+    .hero-text h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-text .hero-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 24px;
+    }
 }
 
 @keyframes blobMorph {
@@ -2345,9 +2377,4 @@ input:checked+.slider:before {
         height: 36px;
         font-size: 1rem;
     }
-}
-
-flex: 1 1 120px;
-/* Allow smaller cards on mobile */
-}
 }
