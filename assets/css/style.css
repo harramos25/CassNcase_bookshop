@@ -2715,45 +2715,80 @@ header#main-header .container {
     margin-bottom: 6px;
 }
 
-/* ===== Payment cards: mobile layout fix ===== */
-.payment-cards {
-    display: grid;
-    gap: 12px;
+/* =========================================
+   CHECKOUT: MOBILE OVERRIDES (FINAL FIX)
+   Put this at the VERY BOTTOM of style.css
+========================================= */
+
+/* 1) Make checkout stack on tablet/phone */
+@media (max-width: 991px) {
+
+    /* kill the desktop grid */
+    .checkout-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 22px !important;
+    }
+
+    /* make both sections full width */
+    .checkout-main,
+    .checkout-sidebar {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 auto !important;
+    }
+
+    /* sticky sidebar breaks mobile flow */
+    .checkout-sidebar {
+        position: static !important;
+        top: auto !important;
+    }
+
+    /* remove “desktop” spacing that feels huge on phone */
+    .checkout-container {
+        padding-top: calc(var(--header-h) + 24px) !important;
+    }
+
+    .checkout-container .section-title {
+        margin-bottom: 18px !important;
+    }
 }
 
-/* Phones: 2 columns */
+/* 2) Payment cards: 2-up on phones + full width for Bank */
 @media (max-width: 768px) {
     .payment-cards {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 12px !important;
     }
 
     .payment-card {
-        width: 100%;
-        height: 64px;
-        /* consistent height */
-        justify-content: flex-start;
-        padding: 12px 14px;
-        border-radius: 14px;
+        min-width: 0 !important;
+        width: 100% !important;
+        height: 64px !important;
+        padding: 12px 14px !important;
     }
 
-    .payment-card span {
-        font-size: 0.72rem;
-        line-height: 1.1;
-    }
-
-    .card-icon {
-        font-size: 1.5rem;
-    }
-
-    /* Primary Alternative (Bank) spans full width */
+    /* Bank spans full row */
     #card-Bank {
-        grid-column: 1 / -1;
+        grid-column: 1 / -1 !important;
+    }
+
+    /* RCBC label behavior (pick one) */
+    #card-RCBC span {
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
     }
 }
 
-/* Small phones: stack 1 column so nothing looks broken */
+/* 3) Extra small phones: stack 1 column */
 @media (max-width: 380px) {
     .payment-cards {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
+    }
+
+    #card-Bank {
+        grid-column: auto !important;
     }
 }
