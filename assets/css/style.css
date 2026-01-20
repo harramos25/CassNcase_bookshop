@@ -2462,21 +2462,18 @@ input:checked+.slider:before {
    Paste at the very bottom of style.css
 =================================== */
 
-.hero-section {
-    padding-top: 120px;
-    /* header spacing */
-}
-
-.hero-content {
-    width: 100%;
-    min-height: calc(100vh - 120px);
-    display: flex;
-    justify-content: center;
-}
-
 /* Desktop/Laptop */
 @media (min-width: 992px) {
+    .hero-section {
+        padding-top: 120px;
+        /* header spacing */
+    }
+
     .hero-content {
+        width: 100%;
+        min-height: calc(100vh - 120px);
+        display: flex;
+        justify-content: center;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
