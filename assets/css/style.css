@@ -2630,7 +2630,7 @@ header#main-header .container {
 
 .checkout-container {
     /* Padding should only offset header + small spacing */
-    padding-top: calc(var(--header-h) + 52px) !important;
+    padding-top: calc(var(--header-h) + 24px) !important;
     max-width: 1240px !important;
     /* Wider for balanced columns */
 }
@@ -2716,8 +2716,7 @@ header#main-header .container {
 }
 
 /* =========================================
-   CHECKOUT: MOBILE OVERRIDES (FINAL FIX)
-   Put this at the VERY BOTTOM of style.css
+   CHECKOUT: MOBILE OVERRIDES 
 ========================================= */
 
 /* 1) Make checkout stack on tablet/phone */
